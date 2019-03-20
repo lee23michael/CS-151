@@ -1,4 +1,5 @@
-import java.awt.Color;
+import java.awt.*;
+import java.util.*;
 
 /**
  * Represents blocks on a Grid.
@@ -35,7 +36,68 @@ public class Block {
 	public int getYCoor() {
 		return this.p.getYPosition();
 	}
+	private final Point[][][] pieces = {
+			// Line-shape
+			{
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(3, 1) },
+				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(1, 3) },
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(3, 1) },
+				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(1, 3) }
+			},
+			
+			// Mirrored L -shap
+			{
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0) },
+				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) },
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 2) },
+				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 0) }
+			},
+			
+			// L-shape
+			{
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2) },
+				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) },
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 0) },
+				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0) }
+			},
+			
+			// Square-shape
+			{
+				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) },
+				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) },
+				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) },
+				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) }
+			},
+			
+			// S-shape
+			{
+				{ new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
+				{ new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) },
+				{ new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
+				{ new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) }
+			},
+			
+			// T-shape
+			{
+				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(2, 1) },
+				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) },
+				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(1, 2) },
+				{ new Point(1, 0), new Point(1, 1), new Point(2, 1), new Point(1, 2) }
+			},
+			
+			// Z-shape
+			{
+				{ new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
+				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) },
+				{ new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
+				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) }
+			}
+	};
 
 	private Position p;
 	private Color c;
+	private Point blockOri;
+	private currentBlock;
+	private rotation;
+	private ArrayList<Integer> nextBlcok = new ArrayList<Integer>();
 }
