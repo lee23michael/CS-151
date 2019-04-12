@@ -1,3 +1,4 @@
+package edu.sjsu.cs151.teteris.model;
 /**
  * Keeps track of the position of objects on a Grid.
  */
@@ -17,10 +18,18 @@ public class Position {
 	 * 
 	 * @param x X coordinate
 	 * @param y Y coordinate
+	 * @return 
 	 */
-	public void setPosition(int x, int y) {
+	public int setPosition(int x, int y) {
+		pre_x = this.x;
+		pre_y = this.y;
 		this.x = x;
 		this.y = y;
+		if(x>19||y>9||y<0)
+		{
+			return -1;
+		}else
+			return 1;
 	}
 	/**
 	 * Gets the x position of this object.
@@ -37,7 +46,25 @@ public class Position {
 		return this.y;
 	}
 	
+	
+	
+	
+	
+	public int getPreXPosition() {
+		return this.pre_x;
+	}
+	
+	public int getPreYPosition() {
+		return this.pre_y;
+	}
+	
+	
+	
+
+	
 	private int x;
 	private int y;
+	private int pre_x;
+	private int pre_y;
 
 }
