@@ -38,7 +38,27 @@ public class Grid {
 		}else
 			return false;
 	
-		
+	}
+	
+	public static void checkLines()
+	{
+		int lineList[] = null;
+		int counter;
+		for(int x = 0; x<20; x++)
+		{
+			counter=0;
+			for(int y = 0; y<20; y++)
+			{
+				if(grid[x][y]!=null)
+				{
+					counter ++;
+				}
+			}
+			if(counter == 10)
+			{
+				lineList[x] = 1;
+			}
+		}
 	}
 	
 
