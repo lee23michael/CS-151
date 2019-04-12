@@ -16,12 +16,16 @@ public class Block {
 	public Block(int x, int y, Color c ) {
 		this.p = new Position(x,y);
 		this.c = c;
+		Grid.addToGrid(x, y, this);
+		
 	}
 	/**
 	 * Sets the x and y position of this Block.
 	 */
 	public void setPostion(int x, int y) {
+		Grid.moveBlockOnGrid(getXCoor(), getYCoor(), x, y);
 		this.p = new Position(x,y);
+		
 	}
 	/**
 	 * Accesses x coordinate of this Block.
@@ -42,7 +46,6 @@ public class Block {
 	{
 		int t_x = this.getXCoor()-thePivot.getXCoor();
 		int t_y = this.getYCoor()-thePivot.getYCoor();
-		
 		this.setPostion(-t_y+thePivot.getXCoor(), t_x+thePivot.getYCoor());
 	}
 	

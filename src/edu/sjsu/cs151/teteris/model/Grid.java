@@ -7,14 +7,39 @@ package edu.sjsu.cs151.teteris.model;
 public class Grid {
 	public static final int GRID_X_MAX = 10;
 	public static final int GRID_Y_MAX = 20;
+	private static Block[][] grid;
 
 	public Grid(int[][] grid) {
-		this.grid = new int[GRID_X_MAX][GRID_Y_MAX];
+		Grid.grid = new Block[GRID_X_MAX][GRID_Y_MAX];
 	}
 	
-	public void fillPosition(int x, int y) {
-		grid[x][y] = 1;
+	//public void fillPosition(int x, int y) {
+	//	grid[x][y] = 1;
+	//}
+	
+	public static void addToGrid(int x, int y, Block b)
+	{
+		grid[x][y] = b;
 	}
 	
-	private int[][] grid;
+	public static void moveBlockOnGrid(int x, int y, int newX, int newY)
+	{
+		grid[newX][newY] = grid[x][y];
+		grid[x][y] = null;
+	}
+	public static boolean isLeagllAndEmpty(int x,int y)
+	{
+		if(x>19||y>9||y<0)
+		{
+			return false;
+		}else if(grid[x][y]==null)
+		{
+			return true;
+		}else
+			return false;
+	
+		
+	}
+	
+
 }

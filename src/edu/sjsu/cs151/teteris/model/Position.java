@@ -18,19 +18,12 @@ public class Position {
 	 * 
 	 * @param x X coordinate
 	 * @param y Y coordinate
-	 * @return 
 	 */
-	public int setPosition(int x, int y) {
-		pre_x = this.x;
-		pre_y = this.y;
+	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
-		if(x>19||y>9||y<0)
-		{
-			return -1;
-		}else
-			return 1;
 	}
+		
 	/**
 	 * Gets the x position of this object.
 	 * @return Value for the x position.
@@ -50,13 +43,7 @@ public class Position {
 	
 	
 	
-	public int getPreXPosition() {
-		return this.pre_x;
-	}
-	
-	public int getPreYPosition() {
-		return this.pre_y;
-	}
+
 	
 	
 	
@@ -64,7 +51,6 @@ public class Position {
 	
 	private int x;
 	private int y;
-	private int pre_x;
-	private int pre_y;
+
 
 }
