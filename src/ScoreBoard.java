@@ -1,4 +1,3 @@
-package edu.sjsu.cs151.teteris.model;
 import java.util.Collections;
 import java.util.TreeMap;
 

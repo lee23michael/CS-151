@@ -1,5 +1,4 @@
-package edu.sjsu.cs151.teteris.model;
-
+package edu.sjsu.cs151.tetris.model;
 
 /**
  * Represents the standard 10 by 20 Tetris grid as an array of 1s and 0s

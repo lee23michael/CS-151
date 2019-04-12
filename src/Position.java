@@ -1,4 +1,3 @@
-package edu.sjsu.cs151.teteris.model;
 /**
  * Keeps track of the position of objects on a Grid.
  */
