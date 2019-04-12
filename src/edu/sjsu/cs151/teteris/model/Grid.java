@@ -55,7 +55,7 @@ public class Grid {
 
 		for(int x = 0; x<20; x++)
 		{
-			counter=0;
+			counter=0;//if counter goes to 10 means the line is filled
 			for(int y = 0; y<10; y++)
 			{
 				if(grid[x][y]!=null)
