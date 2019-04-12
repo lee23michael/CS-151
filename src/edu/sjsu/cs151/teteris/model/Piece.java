@@ -1,3 +1,4 @@
+package edu.sjsu.cs151.teteris.model;
 
 /**
  * Represents a Termino piece on the Grid.
