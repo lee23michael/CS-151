@@ -1,3 +1,4 @@
+package edu.sjsu.cs151.teteris.model;
 import java.awt.*;
 import java.util.*;
 
@@ -36,6 +37,16 @@ public class Block {
 	public int getYCoor() {
 		return this.p.getYPosition();
 	}
+	
+	public void rotateBlock(Block thePivot)
+	{
+		int t_x = this.getXCoor()-thePivot.getXCoor();
+		int t_y = this.getYCoor()-thePivot.getYCoor();
+		
+		this.setPostion(-t_y+thePivot.getXCoor(), t_x+thePivot.getYCoor());
+	}
+	
+	
 	private final Point[][][] pieces = {
 			// Line-shape
 			{
@@ -97,7 +108,6 @@ public class Block {
 	private Position p;
 	private Color c;
 	private Point blockOri;
-	private currentBlock;
-	private rotation;
+
 	private ArrayList<Integer> nextBlcok = new ArrayList<Integer>();
 }
