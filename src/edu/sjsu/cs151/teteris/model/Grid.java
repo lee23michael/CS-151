@@ -69,7 +69,7 @@ public class Grid {
 				x = x-1; //check line x again becasue everthing went down one line
 			}
 		}
-		
+	
 		return lineCleared;
 		
 	}
