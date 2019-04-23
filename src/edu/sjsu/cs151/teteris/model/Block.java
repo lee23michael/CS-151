@@ -13,7 +13,7 @@ public class Block {
 	 * @param p The Position of this Block.
 	 * @param c The Color of this Block.
 	 */
-	public Block(int x, int y, Color c ) {
+	public Block(int x, int y, int c ) {
 		this.p = new Position(x,y);
 		this.c = c;
 		Grid.addToGrid(x, y, this);
@@ -109,7 +109,7 @@ public class Block {
 	};
 
 	private Position p;
-	private Color c;
+	private int c;
 	private Point blockOri;
 
 	private ArrayList<Integer> nextBlcok = new ArrayList<Integer>();
