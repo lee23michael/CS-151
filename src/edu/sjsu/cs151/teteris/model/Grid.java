@@ -9,7 +9,7 @@ public class Grid {
 	public static final int GRID_Y_MAX = 20;
 	private static Block[][] grid;
 
-	public Grid(int[][] grid) {
+	public Grid() {
 		Grid.grid = new Block[GRID_X_MAX][GRID_Y_MAX];
 	}
 	

@@ -10,6 +10,11 @@ public class Teteris {
 		
 	}
 	
+	public void play()
+	{
+		new Grid();
+	}
+	
 	
 	///Just for test
 
