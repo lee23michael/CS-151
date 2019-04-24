@@ -1,7 +1,5 @@
 package edu.sjsu.cs151.teteris.model;
 
-import java.awt.Color;
-import java.util.ArrayList;
 
 /**
  * Represents a Termino piece on the Grid.

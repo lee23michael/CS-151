@@ -1,8 +1,8 @@
 package edu.sjsu.cs151.teteris.model;
-import java.util.Collections;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 //Needed to initialized the ScoreBoard at the start of Game
 

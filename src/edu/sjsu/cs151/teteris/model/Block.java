@@ -1,6 +1,6 @@
 package edu.sjsu.cs151.teteris.model;
-import java.awt.*;
-import java.util.*;
+
+
 
 /**
  * Represents blocks on a Grid.

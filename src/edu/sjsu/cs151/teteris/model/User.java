@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.TreeSet;
+
 
 public class User implements Serializable,Comparable<User> {
     /**
@@ -18,7 +18,7 @@ public class User implements Serializable,Comparable<User> {
 	private String name;
     private int id; 
     private int score;
-	private static boolean add;
+
     
  
    
