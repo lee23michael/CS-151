@@ -15,7 +15,7 @@ public class Block {
 	 */
 	public Block(int x, int y, int c ) {
 		this.p = new Position(x,y);
-		this.c = c;
+		this.setColor(c);
 		Grid.addToGrid(x, y, this);
 		
 	}
@@ -50,67 +50,24 @@ public class Block {
 	}
 	
 	
-	private final Point[][][] pieces = {
-			// Line-shape
-			{
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(3, 1) },
-				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(1, 3) },
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(3, 1) },
-				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(1, 3) }
-			},
-			
-			// Mirrored L -shap
-			{
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 0) },
-				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 2) },
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 2) },
-				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 0) }
-			},
-			
-			// L-shape
-			{
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(2, 2) },
-				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) },
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(0, 0) },
-				{ new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(2, 0) }
-			},
-			
-			// Square-shape
-			{
-				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) },
-				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) },
-				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) },
-				{ new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1) }
-			},
-			
-			// S-shape
-			{
-				{ new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
-				{ new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) },
-				{ new Point(1, 0), new Point(2, 0), new Point(0, 1), new Point(1, 1) },
-				{ new Point(0, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) }
-			},
-			
-			// T-shape
-			{
-				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(2, 1) },
-				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(1, 2) },
-				{ new Point(0, 1), new Point(1, 1), new Point(2, 1), new Point(1, 2) },
-				{ new Point(1, 0), new Point(1, 1), new Point(2, 1), new Point(1, 2) }
-			},
-			
-			// Z-shape
-			{
-				{ new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
-				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) },
-				{ new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(2, 1) },
-				{ new Point(1, 0), new Point(0, 1), new Point(1, 1), new Point(0, 2) }
-			}
-	};
+
+	/**
+	 * @return the c
+	 */
+	public int getColor() {
+		return c;
+	}
+	/**
+	 * @param c the c to set
+	 */
+	public void setColor(int c) {
+		this.c = c;
+	}
+
+
 
 	private Position p;
 	private int c;
-	private Point blockOri;
 
-	private ArrayList<Integer> nextBlcok = new ArrayList<Integer>();
+
 }

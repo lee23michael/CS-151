@@ -18,6 +18,7 @@ public class Piece {
 	
 	public Piece(TerminoShape e,int a0, int a1, int b0, int b1, int c0, int c1, int d0, int d1) {
 		shape = e;
+		pieceColor = RandomSingleton.getInstance().nextColor();
 		blocks = new Block[4];
 		blocks[0]= new Block(a0,a1,pieceColor);
 		blocks[1]=new Block(b0,b1,pieceColor);
@@ -136,14 +137,9 @@ public class Piece {
 		return shape;
 	}
 	
-	
-	
-	
 
-	
-	
 		
-	}
+}
 	
 	
 	
