@@ -1,5 +1,6 @@
 package edu.sjsu.cs151.teteris.model;
 
+
 public class Line extends Piece {
 	private int LineStatus;
 	

@@ -1,12 +1,13 @@
 package edu.sjsu.cs151.teteris.model;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 //Needed to initialized the ScoreBoard at the start of Game
 
-public class ScoreBoard {
+public class ScoreBoard{
 	
 	private static Map<String,Integer> score_list;
 	
