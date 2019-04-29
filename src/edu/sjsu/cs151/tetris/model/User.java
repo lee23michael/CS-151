@@ -1,4 +1,4 @@
-package edu.sjsu.cs151.teteris.model;
+package edu.sjsu.cs151.tetris.model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;

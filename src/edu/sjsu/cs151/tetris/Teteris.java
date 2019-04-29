@@ -1,9 +1,9 @@
-package edu.sjsu.cs151.teteris;
+package edu.sjsu.cs151.tetris;
 
 import java.util.Timer; 
 import java.util.TimerTask;
 
-import edu.sjsu.cs151.teteris.model.Model; 
+import edu.sjsu.cs151.tetris.model.Model; 
   
 
 public class Teteris 

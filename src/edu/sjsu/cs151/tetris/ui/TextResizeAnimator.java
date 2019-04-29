@@ -1,4 +1,4 @@
-package edu.sjsu.cs151.teteris.ui;
+package edu.sjsu.cs151.tetris.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
