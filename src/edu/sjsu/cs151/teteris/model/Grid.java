@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Grid implements Serializable{
 	public static final int GRID_X_MAX = 10;
-	public static final int GRID_Y_MAX = 20;
+	public static final int GRID_Y_MAX = 22; // extra first two is not visable
 	private static Block[][] grid;
 	private static final long serialVersionUID = 1L;
     private static String filename = "userList.ser"; 
@@ -38,7 +38,7 @@ public class Grid implements Serializable{
 	}
 	public static boolean isLeagllAndEmpty(int x,int y)
 	{
-		if(x>19||y>9||y<0)
+		if(x>21||y>9||y<0)
 		{
 			return false;
 		}else if(grid[x][y]==null)
@@ -48,6 +48,7 @@ public class Grid implements Serializable{
 			return false;
 	
 	}
+	
 	
 	 public static void save()
      {
@@ -106,12 +107,6 @@ public class Grid implements Serializable{
 	public static int checkLines()
 	{
 		
-		//Line clear	Points
-		//1 (single)	40
-		//2 (double)	100
-		//3 (triple)	300
-		//4 (tetris)	1200
-
 		
 		int counter;
 		int lineCleared=0;
@@ -137,7 +132,7 @@ public class Grid implements Serializable{
 		
 	}
 	
-	public static void deleteLine(int x) {
+	private static void deleteLine(int x) {
 		for(int i = 0; i<10; i++)
 		{
 			Grid.grid[x][i] = null;

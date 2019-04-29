@@ -12,6 +12,7 @@ public class Piece {
 	private TerminoShape shape;
 	private Block[] blocks;
 	private int pieceColor;
+	private boolean finalized = false;
 	
 	
 	public Piece(TerminoShape e,int a0, int a1, int b0, int b1, int c0, int c1, int d0, int d1) {
@@ -111,6 +112,17 @@ public class Piece {
 	public TerminoShape getShap()
 	{
 		return shape;
+	}
+	
+	public void setFinalized()
+	{
+		finalized = true;
+	}
+	
+	//if the piece has finalized
+	public boolean getStatus()
+	{
+		return finalized;
 	}
 	
 

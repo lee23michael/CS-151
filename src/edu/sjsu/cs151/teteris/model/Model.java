@@ -27,6 +27,7 @@ public class Model implements Serializable  {
 	{
 		User.loadUserList();//load previous users data
 		LoadState();
+		this.fillNextQueue();
 		if(Model.gameSaved == true)
 		{
 			currentUser = User.getCurrentUser();
@@ -48,9 +49,31 @@ public class Model implements Serializable  {
 		return currentPiece;
 	}
 	
+	public void fillNextQueue()
+	{
+		currentPiece = RandomSingleton.getInstance().nextPiece();
+		while(nextPieceQueue.size()<3)
+		{
+			nextPieceQueue.add(RandomSingleton.getInstance().nextPiece());
+		}
+	}
+	
+	public void getNextPiece()
+	{
+		currentPiece = nextPieceQueue.remove();
+		nextPieceQueue.add(RandomSingleton.getInstance().nextPiece());
+	}
+	
 	public User getCurrentUser()
 	{
 		return currentUser;
+	}
+	
+	public void setFinalized()
+	{
+		currentPiece.setFinalized();
+		this.checkLines();
+		getNextPiece();
 	}
 	
 	public void rotate()
@@ -99,6 +122,7 @@ public class Model implements Serializable  {
 		
 	}
 	
+	
 	public void moveLeft()
 	{
 		Block[] blocks = currentPiece.getBlockArray();
@@ -135,6 +159,35 @@ public class Model implements Serializable  {
 			currentPiece.moveRight();
 		}
 	}
+	
+	private void checkLines()
+	{
+		//Line clear	Points
+				//1 (single)	40
+				//2 (double)	100
+				//3 (triple)	300
+				//4 (tetris)	1200
+		int lineCleared = Grid.checkLines();
+		switch(lineCleared)
+		{
+			case 0:
+				break;
+			case 1:
+				currentUser.addScore(40);
+				break;
+			case 2:
+				currentUser.addScore(40);
+				break;
+			case 3:
+				currentUser.addScore(300);
+				break;
+			case 4:
+				currentUser.addScore(1200);
+				break;	
+		}
+
+	}
+	
 	
 	public static void saveStateToFile()
     {

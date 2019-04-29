@@ -20,7 +20,7 @@ public class RandomSingleton {
          
     }
     
-    public Object nextPiece()
+    public Piece nextPiece()
     {
     	int x = randomgen.nextInt(6);
     	

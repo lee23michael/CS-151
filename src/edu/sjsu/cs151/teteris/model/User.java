@@ -132,7 +132,7 @@ public class User implements Serializable,Comparable<User> {
     	 return score;
      }
      
-     public void modifyScore(int input)
+     public void addScore(int input)
      {
     	 score = score + input;
      }
