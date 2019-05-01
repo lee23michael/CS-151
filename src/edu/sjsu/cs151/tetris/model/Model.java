@@ -101,6 +101,7 @@ public class Model implements Serializable  {
 	public void setFinalized()
 	{
 		this.checkLostCondition();
+		checkLines();
 		currentPiece.setFinalized();
 		
 		
