@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * Represents the standard 10 by 20 Tetris grid as an array of 1s and 0s
  */
 public class Grid implements Serializable{
-	public static final int GRID_X_MAX = 10;
-	public static final int GRID_Y_MAX = 22; // extra first two is not visable
+	public static final int GRID_X_MAX = 22;
+	public static final int GRID_Y_MAX = 10; // extra first two is not visable
 	private static Block[][] grid;
 	private static final long serialVersionUID = 1L;
     private static String filename = "userList.ser"; 
@@ -31,23 +31,44 @@ public class Grid implements Serializable{
 		grid[x][y] = b;
 	}
 	
+	public static void addPieceToGrid(Piece p)
+	{
+		for(int i=0;i<4;i++)
+		{
+			addToGrid(p.getBlock(i).getXCoor(),p.getBlock(i).getYCoor(),p.getBlock(i));
+		}
+	}
+
+	
+	public static void removePieceFromGrid(Piece p) {
+		
+		for(int i=0;i<4;i++)
+		{
+			grid[p.getBlock(i).getXCoor()][p.getBlock(i).getYCoor()] = null;
+		}
+	}
+	
 	public static void moveBlockOnGrid(int x, int y, int newX, int newY)
 	{
 		grid[newX][newY] = grid[x][y];
 		grid[x][y] = null;
 	}
+	
+	
 	public static boolean isLeagllAndEmpty(int x,int y)
 	{
 		if(x>21||y>9||y<0)
 		{
 			return false;
-		}else if(grid[x][y]==null)
+		}else if(x<2||grid[x][y]==null||grid[x][y].getMovingStatus())//ignore first two lines of board, invisible
 		{
 			return true;
 		}else
 			return false;
 	
 	}
+	
+	
 	
 	
 	 public static void save()
@@ -111,7 +132,7 @@ public class Grid implements Serializable{
 		int counter;
 		int lineCleared=0;
 
-		for(int x = 0; x<20; x++)
+		for(int x = 2; x<22; x++)
 		{
 			counter=0;//if counter goes to 10 means the line is filled
 			for(int y = 0; y<10; y++)
@@ -124,7 +145,7 @@ public class Grid implements Serializable{
 			if(counter == 10)
 			{
 				Grid.deleteLine(x);
-				x = x-1; //check line x again becasue everthing went down one line
+				x = x+1; //check line x again becasue everthing went down one line
 			}
 		}
 	
@@ -133,16 +154,44 @@ public class Grid implements Serializable{
 	}
 	
 	private static void deleteLine(int x) {
-		for(int i = 0; i<10; i++)
+		for(int j = 0; j<10; j++)
 		{
-			Grid.grid[x][i] = null;
+			Grid.grid[x][j] = null;
 		}
-		for(int i = x+1; i<20; i++)
+		for(int i = x-1; i>1; i--)
 		{
 			for(int j = 0;j<10;j++)
 			{
-				Grid.grid[i][j].setPostion(i-1, j);
+				
+			if(Grid.grid[i][j]!=null)
+			{
+				Grid.grid[i][j].setPostion(i+1, j);
+				Grid.grid[i][j] = null;
 			}
+				
+			}
+		}
+		
+	}
+	
+	public static void Print()
+	{
+		
+		for(int x = 0; x<22; x++)
+		{
+			for(int y = 0; y<10; y++)
+			{
+				if(grid[x][y]!=null)
+				{
+					System.out.print("*");
+				} else 
+				{
+					System.out.print("X");
+				}
+				
+			}
+			System.out.println("");
+			
 		}
 		
 	}

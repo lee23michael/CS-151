@@ -22,7 +22,7 @@ public class RandomSingleton {
     
     public Piece nextPiece()
     {
-    	int x = randomgen.nextInt(6);
+    	int x = randomgen.nextInt(7);
     	
     	if(x == 0)
     	{
@@ -52,6 +52,8 @@ public class RandomSingleton {
     	{
     		return new Pyramid();
     	}
+    	
+    	
     	
     }
     

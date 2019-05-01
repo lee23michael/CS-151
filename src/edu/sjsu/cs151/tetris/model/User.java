@@ -176,7 +176,8 @@ public class User implements Serializable,Comparable<User> {
               in.close(); 
               file.close(); 
               while(user_list.remove(null));
-              System.out.println("Object has been deserialized "); 
+              System.out.println("Object has been deserialized ");
+              
               
           } 
             

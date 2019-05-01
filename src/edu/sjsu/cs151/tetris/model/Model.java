@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Model implements Serializable  {
@@ -19,17 +20,22 @@ public class Model implements Serializable  {
 	private static boolean gameSaved = false;
 	private static User currentUser;
 	private static Piece currentPiece;
-	private static Queue<Piece> nextPieceQueue;
+	private static Queue<Piece> nextPieceQueue = new LinkedList<>();
+	private static boolean gameLost = false;
 	
 	
 	
 	public Model(String name)
 	{
+		assert true : "In Model Constructor";
 		User.loadUserList();//load previous users data
+		assert true : "UserList Loaded";
 		LoadState();
-		this.fillNextQueue();
+		assert true : "State Loaded";
+		
 		if(Model.gameSaved == true)
 		{
+			assert true : "Gamed Saved Before";
 			currentUser = User.getCurrentUser();
 			Grid.loadGrid();
 			LoadNextQueue();
@@ -37,13 +43,34 @@ public class Model implements Serializable  {
 			
 		}else
 		{
+			assert true : "New Game not saved before";
 			currentUser = new User(name);
 			new Grid();
+			fillNextQueue();
 		}
 		
 		new ScoreBoard();
 	}
 	
+	public void checkLostCondition()
+	{
+		Block temp[] = 
+		currentPiece.getBlockArray();
+
+		for(int i = 0; i<4;i++)
+		{
+			if(temp[i].getXCoor()<2)
+			{
+				gameLost = true;
+			}
+		}
+	}
+	
+	public boolean getLostCondition()
+	{
+		return gameLost;
+	 
+	}
 	public Piece getCurrentPiece()
 	{
 		return currentPiece;
@@ -52,15 +79,17 @@ public class Model implements Serializable  {
 	public void fillNextQueue()
 	{
 		currentPiece = RandomSingleton.getInstance().nextPiece();
+		currentPiece.setVisible();
 		while(nextPieceQueue.size()<3)
 		{
 			nextPieceQueue.add(RandomSingleton.getInstance().nextPiece());
 		}
 	}
 	
-	public void getNextPiece()
+	private void getNextPiece()
 	{
 		currentPiece = nextPieceQueue.remove();
+		currentPiece.setVisible();
 		nextPieceQueue.add(RandomSingleton.getInstance().nextPiece());
 	}
 	
@@ -71,38 +100,195 @@ public class Model implements Serializable  {
 	
 	public void setFinalized()
 	{
+		this.checkLostCondition();
 		currentPiece.setFinalized();
-		this.checkLines();
+		
+		
 		getNextPiece();
 	}
 	
 	public void rotate()
 	{
+		currentPiece.setMoving();
+		
 		boolean locationLegal = true;
-		int pivot = currentPiece.getPivot();
-		Block[] blocks = currentPiece.getBlockArray();
+		boolean NormalRotate = true;
 		
-		for(int i = 0; i<4;i++)
-		{
-			int t_x = blocks[i].getXCoor()-blocks[pivot].getXCoor();
-			int t_y = blocks[i].getYCoor()-blocks[pivot].getYCoor();
-			blocks[i].setPostion(-t_y+blocks[pivot].getXCoor(), t_x+blocks[pivot].getYCoor());
-			
-			if(!Grid.isLeagllAndEmpty(-t_y+blocks[pivot].getXCoor(), t_x+blocks[pivot].getYCoor()))
-			{
-				locationLegal = false;
-			};
-		}
 		
-		if(locationLegal)
+		if(currentPiece.getShap()==TerminoShape.SQUARE)
 		{
+			NormalRotate = false;
 			currentPiece.rotate();
+			
 		}
+		
+		if(currentPiece.getShap()==TerminoShape.LINE)
+		{
+			NormalRotate = false;
+			Block[] blocks = currentPiece.getBlockArray();
+			
+			switch(currentPiece.getLineStatus())
+			{	
+			
+				case 0: 
+				{
+					if(!Grid.isLeagllAndEmpty(blocks[0].getXCoor()-1, blocks[0].getYCoor()+2))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[1].getXCoor(),blocks[1].getYCoor()))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[2].getXCoor()+1, blocks[2].getYCoor()))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[3].getXCoor()+2, blocks[3].getYCoor()-1))
+					{
+						locationLegal = false;
+					}
+					if(locationLegal)
+					{
+						Grid.removePieceFromGrid(currentPiece);
+						currentPiece.rotate();
+						currentPiece.setLineStatus(1);
+					}
+					
+					break; 
+				}
+				case 1: 
+				{
+
+					if(!Grid.isLeagllAndEmpty(blocks[0].getXCoor()+2, blocks[0].getYCoor()+1))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[1].getXCoor()+1,blocks[1].getYCoor()))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[2].getXCoor(), blocks[2].getYCoor()-1))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[3].getXCoor()-1, blocks[3].getYCoor()-2))
+					{
+						locationLegal = false;
+					}
+					if(locationLegal)
+					{
+						Grid.removePieceFromGrid(currentPiece);
+						currentPiece.rotate();
+						currentPiece.setLineStatus(2);
+					}
+					
+					break; 
+				}
+				case 2: 
+				{
+					if(!Grid.isLeagllAndEmpty(blocks[0].getXCoor()+1, blocks[0].getYCoor()-2))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[1].getXCoor(),blocks[1].getYCoor()-1))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[2].getXCoor()-1, blocks[2].getYCoor()))
+					{
+						locationLegal = false;
+					}
+					if(!Grid.isLeagllAndEmpty(blocks[3].getXCoor()-2, blocks[3].getYCoor()+1))
+					{
+						locationLegal = false;
+					}
+					if(locationLegal)
+					{
+						Grid.removePieceFromGrid(currentPiece);
+						currentPiece.rotate();
+						currentPiece.setLineStatus(3);
+					}
+					
+					break; 
+				}
+				case 3: 
+				{
+				
+						if(!Grid.isLeagllAndEmpty(blocks[0].getXCoor()-2, blocks[0].getYCoor()-1))
+						{
+							locationLegal = false;
+						}
+						if(!Grid.isLeagllAndEmpty(blocks[1].getXCoor()-1,blocks[1].getYCoor()))
+						{
+							locationLegal = false;
+						}
+						if(!Grid.isLeagllAndEmpty(blocks[2].getXCoor(), blocks[2].getYCoor()+1))
+						{
+							locationLegal = false;
+						}
+						if(!Grid.isLeagllAndEmpty(blocks[3].getXCoor()+1, blocks[3].getYCoor()+2))
+						{
+							locationLegal = false;
+						}
+						if(locationLegal)
+						{
+							Grid.removePieceFromGrid(currentPiece);
+							currentPiece.rotate();
+							currentPiece.setLineStatus(0);
+						}
+					
+					break; 
+				}
+			
+			
+			}
+			
+			
+		}
+		
+		if(NormalRotate)
+		{
+		
+			int pivot = currentPiece.getPivot();
+			Block[] blocks = currentPiece.getBlockArray();
+			
+			//t_x = x_p - y_p + y;
+		    //t_y = y_p + x_p - x;
+			
+			int x_p = blocks[pivot].getXCoor();
+			int y_p = blocks[pivot].getYCoor();
+			
+			
+			for(int i = 0; i<4;i++)
+			{
+				int x = blocks[i].getXCoor();
+				int y = blocks[i].getYCoor();
+				
+				int t_x = x_p - y_p + y;
+				int t_y = y_p + x_p - x;
+				if(!Grid.isLeagllAndEmpty(t_x,t_y))
+				{
+					locationLegal = false;
+				};
+			}
+		
+			
+				if(locationLegal)
+				{
+					Grid.removePieceFromGrid(currentPiece);
+					currentPiece.rotate();
+				}
+			}
+		
+		currentPiece.SetMoveToFalse();
 		
 	}
 	
 	public boolean drop()
 	{
+		currentPiece.setMoving();
+		
 		Block[] blocks = currentPiece.getBlockArray();
 		boolean locationLegal = true;
 		for(int i = 0; i<4;i++)
@@ -115,8 +301,11 @@ public class Model implements Serializable  {
 		
 		if(locationLegal)
 		{
+			Grid.removePieceFromGrid(currentPiece);
 			currentPiece.drop();
 		}
+		
+		currentPiece.SetMoveToFalse();
 		
 		return locationLegal;
 		
@@ -125,6 +314,7 @@ public class Model implements Serializable  {
 	
 	public void moveLeft()
 	{
+		currentPiece.setMoving();
 		Block[] blocks = currentPiece.getBlockArray();
 	
 		boolean locationLegal = true;
@@ -137,14 +327,18 @@ public class Model implements Serializable  {
 		}
 		if(locationLegal)
 		{
+			Grid.removePieceFromGrid(currentPiece);
 			currentPiece.moveLeft();
 		}
+		
+		currentPiece.SetMoveToFalse();
 		
 	}
 	
 
 	public void moveRight()
 	{
+		currentPiece.setMoving();
 		Block[] blocks = currentPiece.getBlockArray();
 		boolean locationLegal = true;
 		for(int i = 0; i<4;i++)
@@ -156,8 +350,11 @@ public class Model implements Serializable  {
 		}
 		if(locationLegal)
 		{
+			Grid.removePieceFromGrid(currentPiece);
 			currentPiece.moveRight();
 		}
+		
+		currentPiece.SetMoveToFalse();
 	}
 	
 	private void checkLines()
@@ -300,13 +497,19 @@ public class Model implements Serializable  {
 	
 	///Just for test
 
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Model test = new Model("gdsg");
-		test.saveStateToFile();
+	//	Model test = new Model("gdsg");
+	//	test.saveStateToFile();
 	
-
+//
+	//}
+	
+	
+	public void printBoard()
+	{
+		Grid.Print();
 	}
 	
 	public void showSocoreBoard()

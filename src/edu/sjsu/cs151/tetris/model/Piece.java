@@ -8,11 +8,13 @@ package edu.sjsu.cs151.tetris.model;
 
 public class Piece {
 
-	private int pivot;
+	private int pivot = -1;
 	private TerminoShape shape;
-	private Block[] blocks;
+	protected Block[] blocks;
 	private int pieceColor;
 	private boolean finalized = false;
+	private boolean visible = false;
+	private int LineStatus;
 	
 	
 	public Piece(TerminoShape e,int a0, int a1, int b0, int b1, int c0, int c1, int d0, int d1) {
@@ -23,6 +25,16 @@ public class Piece {
 		blocks[1]=new Block(b0,b1,pieceColor);
 		blocks[2]=new Block(c0,c1,pieceColor);
 		blocks[3]=new Block(d0,d1,pieceColor);
+	}
+	
+	public void setVisible() {
+		visible = true;
+		for(int i=0;i<4;i++)
+		{
+			blocks[i].setVisible();
+		}
+		System.out.println(this.getShap().toString());
+		
 	}
 	
 	public Block[] getBlockArray()
@@ -54,16 +66,25 @@ public class Piece {
 	
 	public void rotate()
 	{
-		
+		int x_p = blocks[pivot].getXCoor();
+		int y_p = blocks[pivot].getYCoor();
 		
 			for(int i = 0; i<4;i++)
 			{
+				
+				int x = blocks[i].getXCoor();
+				int y = blocks[i].getYCoor();
+				
+				int t_x = x_p - y_p + y;
+				int t_y = y_p + x_p - x;
+				
 				if(i!=pivot)
 				{
-					int t_x = blocks[i].getXCoor()-blocks[pivot].getXCoor();
-					int t_y = blocks[i].getYCoor()-blocks[pivot].getYCoor();
-					blocks[i].setPostion(-t_y+blocks[pivot].getXCoor(), t_x+blocks[pivot].getYCoor());
-				}		
+					blocks[i].setPostion(t_x,t_y);
+				}else
+				{
+					blocks[i].setPostion(blocks[pivot].getXCoor(),blocks[pivot].getYCoor());
+				}
 			}
 		
 		
@@ -92,21 +113,12 @@ public class Piece {
 	
 	public void moveRight()
 	{
-		boolean locationLegal = true;
-		for(int i = 0; i<4;i++)
-		{
-			if(!Grid.isLeagllAndEmpty(blocks[i].getXCoor(), blocks[i].getYCoor()+1))
-			{
-				locationLegal = false;
-			};
-		}
-		if(locationLegal)
-		{
+		
 			for(int i = 0; i<4;i++)
 			{
 				blocks[i].setPostion(blocks[i].getXCoor(), blocks[i].getYCoor()+1);
 			}
-		}
+		
 	}
 	
 	public TerminoShape getShap()
@@ -125,9 +137,36 @@ public class Piece {
 		return finalized;
 	}
 	
+	
+	public void setMoving() {
+		for(int i=0;i<4;i++)
+		{
+			blocks[i].setMove();
+		}
+	}
+		
+	public void SetMoveToFalse() {
+		for(int i=0;i<4;i++)
+		{
+			blocks[i].SetMoveToFalse();
+		}
+	}
+
+	public int getLineStatus() {
+		return LineStatus;
+	}
+
+	public void setLineStatus(int lineStatus) {
+		LineStatus = lineStatus;
+	}
+	}
+	
+	
+	
+	
 
 		
-}
+
 	
 	
 	
