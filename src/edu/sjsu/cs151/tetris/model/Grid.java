@@ -132,7 +132,7 @@ public class Grid implements Serializable{
 		int counter;
 		int lineCleared=0;
 
-		for(int x = 2; x<22; x++)
+		for(int x = 21; x>2; x--)
 		{
 			counter=0;//if counter goes to 10 means the line is filled
 			for(int y = 0; y<10; y++)
@@ -183,10 +183,10 @@ public class Grid implements Serializable{
 			{
 				if(grid[x][y]!=null)
 				{
-					System.out.print("*");
+					System.out.print("O");
 				} else 
 				{
-					System.out.print("X");
+					System.out.print("+");
 				}
 				
 			}
