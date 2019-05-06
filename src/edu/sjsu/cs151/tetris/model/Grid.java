@@ -1,5 +1,8 @@
 package edu.sjsu.cs151.tetris.model;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -174,27 +177,27 @@ public class Grid implements Serializable{
 		
 	}
 	
-	public static void Print()
+	public static void Print(Graphics2D g)
 	{
 		
-		for(int x = 0; x<22; x++)
-		{
-			for(int y = 0; y<10; y++)
-			{
-				if(grid[x][y]!=null)
-				{
-					System.out.print("O");
-				} else 
-				{
-					System.out.print("+");
-				}
-				
-			}
-			System.out.println("");
+		g.setColor(gridColor);
+        g.fill(gridRect);
+ 
+        // the blocks dropped in the grid
+     
+        for (int r = 0; r < GRID_X_MAX; r++) 
+        {
+            for (int c = 0; c <GRID_Y_MAX; c++) 
+            {
+                Block idx = grid[r][c];
+               
+            }
+        }
 			
 		}
-		
+	final static Rectangle gridRect = new Rectangle(46, 47, 308, 517);
+	final static Color gridColor = new Color(0xBECFEA);
 	}
 	
 
-}
+
