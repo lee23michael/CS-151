@@ -11,11 +11,21 @@ package edu.sjsu.cs151.tetris.ui;
  */
 public class Main {
 
+    public static boolean getHideTutorial() {
+        return hideTutorial;
+    }
+    public static void setHideTutorial() {
+        hideTutorial = !hideTutorial;
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        TitleScreen t = new TitleScreen();
+        t.setVisible(true);
     }
+    
+    private static boolean hideTutorial;
     
 }

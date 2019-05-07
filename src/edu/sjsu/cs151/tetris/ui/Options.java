@@ -16,6 +16,9 @@ public class Options extends javax.swing.JFrame {
      */
     public Options() {
         initComponents();
+        if (Main.getHideTutorial()) {
+            jCheckBox1.setSelected(true);
+        }
     }
 
     /**
@@ -106,7 +109,7 @@ public class Options extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+        Main.setHideTutorial();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
