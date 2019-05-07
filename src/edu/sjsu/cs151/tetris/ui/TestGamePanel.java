@@ -61,7 +61,7 @@ public class TestGamePanel extends JPanel {
 
                 CellPane cellPane = new CellPane();
                 Border border = null;
-                border = new MatteBorder(1, 1, 0, 0, Color.DARK_GRAY);
+                border = new MatteBorder(1, 1, 0, 0, Color.GRAY);
                 
                 
                 

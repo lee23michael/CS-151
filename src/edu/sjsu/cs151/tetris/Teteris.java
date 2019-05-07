@@ -17,7 +17,7 @@ public class Teteris
 	public String name = "ExampleName";
 	public static Model model;
 	private static int finalizedCounter;
-	TestGame gameBoard =	new TestGame();
+	//TestGame gameBoard =	new TestGame();
 	
 	public Teteris()
 	{
@@ -27,6 +27,7 @@ public class Teteris
 	
 	public void start()
 	{
+		new TestGame();
 		Timer timer = new Timer(); 
 		
         timer.scheduleAtFixedRate(new TimerHelperDrop(), 300, 800);
@@ -117,7 +118,7 @@ private class PrintHelper extends TimerTask
 //		model.printBoard();
 //		System.out.println(" ------------------- ");
 //		System.out.println(" ------------------- ");
-			 gameBoard.update(model.getGrid());
+			TestGame.update(model.getGrid());
 		}
         
        

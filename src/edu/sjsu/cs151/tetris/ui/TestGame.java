@@ -26,7 +26,7 @@ public class TestGame {
 	static Piece[] nextQueueArray;
 	
 	 public static void main(String args[]) {
-	 
+		 new TestGame();
 		
 	 }
 	 
