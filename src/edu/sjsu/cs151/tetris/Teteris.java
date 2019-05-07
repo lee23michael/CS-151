@@ -1,17 +1,23 @@
 package edu.sjsu.cs151.tetris;
 
+import java.util.Map;
 import java.util.Timer; 
 import java.util.TimerTask;
 
-import edu.sjsu.cs151.tetris.model.Model; 
+import edu.sjsu.cs151.tetris.model.Block;
+import edu.sjsu.cs151.tetris.model.Model;
+import edu.sjsu.cs151.tetris.model.Piece;
+import edu.sjsu.cs151.tetris.model.ScoreBoard;
+import edu.sjsu.cs151.tetris.ui.TestGame; 
   
 //Controller Class
 
 public class Teteris 
 { 
 	public String name = "ExampleName";
-	public Model model;
+	public static Model model;
 	private static int finalizedCounter;
+	TestGame gameBoard =	new TestGame();
 	
 	public Teteris()
 	{
@@ -22,12 +28,25 @@ public class Teteris
 	public void start()
 	{
 		Timer timer = new Timer(); 
+		
         timer.scheduleAtFixedRate(new TimerHelperDrop(), 300, 800);
         timer.scheduleAtFixedRate(new PrintHelper(), 1, 16);
         assert true : "Game Started";
         
         
 	}
+	
+	public static Piece[] getNextQueue()
+	{
+		return model.getNextQueue();
+	}
+	
+	public static Map<String,Integer> getScoreBoardMap()
+	{
+		return Model.getScoreBoardMap();
+		
+	}
+	
 	
 	public static int getFinalizedCounter () {
 		return finalizedCounter;
@@ -46,18 +65,18 @@ public class Teteris
 	
 
     
-    public void moveLeft() {
+    public static void moveLeft() {
     	model.moveLeft();
     }
     
-    public void moveRight() {
+    public static void moveRight() {
     	model.moveRight();
     }
     
-    public void rotate() {
+    public static void rotate() {
     	model.rotate();
     }
-    public void drop() {
+    public static void drop() {
     	model.drop();
     }
 
@@ -94,10 +113,11 @@ private class PrintHelper extends TimerTask
     { 
 		if(!model.getLostCondition())
 		{
-		
-		model.printBoard();
-		System.out.println(" ------------------- ");
-		System.out.println(" ------------------- ");
+//		
+//		model.printBoard();
+//		System.out.println(" ------------------- ");
+//		System.out.println(" ------------------- ");
+			 gameBoard.update(model.getGrid());
 		}
         
        

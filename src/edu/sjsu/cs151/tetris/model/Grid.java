@@ -175,6 +175,11 @@ public class Grid implements Serializable{
 		
 	}
 	
+	public static Block[][] getGrids()
+	{
+		return grid;
+	}
+	
 	public static void Print()
 	{
 		
