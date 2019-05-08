@@ -10,6 +10,7 @@ import edu.sjsu.cs151.tetris.model.Piece;
 import edu.sjsu.cs151.tetris.model.ScoreBoard;
 import edu.sjsu.cs151.tetris.ui.Board;
 import edu.sjsu.cs151.tetris.ui.Game;
+import edu.sjsu.cs151.tetris.ui.MainMenu;
   
 //Controller Class
 
@@ -18,6 +19,7 @@ public class Teteris
 	public String name = "ExampleName";
 	public static Model model;
 	private static int finalizedCounter;
+	public static int gameStart = 0;
 	//TestGame gameBoard =	new TestGame();
 	
 	public Teteris()
@@ -30,12 +32,16 @@ public class Teteris
 	{
 		new Board();
 		Timer timer = new Timer(); 
-		
+		gameStart = 0;
         timer.scheduleAtFixedRate(new TimerHelperDrop(), 300, 800);
         timer.scheduleAtFixedRate(new PrintHelper(), 1, 16);
         assert true : "Game Started";
         
         
+	}
+	
+	public void startGameTitle() {
+		new MainMenu().setVisible(true);
 	}
 	
 	public static Piece[] getNextQueue()
@@ -121,6 +127,9 @@ private class PrintHelper extends TimerTask
 //		System.out.println(" ------------------- ");
 			Board.update(model.getGrid());
 		}
+		
+		
+		
         
        
         

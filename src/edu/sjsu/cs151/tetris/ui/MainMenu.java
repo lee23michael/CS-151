@@ -5,6 +5,8 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
+import edu.sjsu.cs151.tetris.Teteris;
+
 /**
  *
  * @author David
@@ -104,7 +106,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new Game().setVisible(true);
+        Teteris.gameStart = 1;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
