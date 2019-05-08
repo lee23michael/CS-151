@@ -5,7 +5,7 @@ public class Line extends Piece {
 	
 	
 	public Line() {
-		super(TerminoShape.LINE,0,0,0,1,0,2,0,3);
+		super(TerminoShape.LINE,0,0,0,1,0,2,0,3,4);
 		setLineStatus(0);
 		//no pivot special rotation
 	}

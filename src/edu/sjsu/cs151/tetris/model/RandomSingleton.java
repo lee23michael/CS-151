@@ -15,10 +15,10 @@ public class RandomSingleton {
         return instance;
     }
 
-    public int nextColor() {
-         return randomgen.nextInt(6);
+   // public int nextColor() {
+   //      return randomgen.nextInt(6);
          
-    }
+   // }
     
     public Piece nextPiece()
     {

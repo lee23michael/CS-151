@@ -11,20 +11,21 @@ public class Piece {
 	private int pivot = -1;
 	private TerminoShape shape;
 	protected Block[] blocks;
-	private int pieceColor;
+	//private int pieceColor;
 	private boolean finalized = false;
 	private boolean visible = false;
 	private int LineStatus;
 	
 	
-	public Piece(TerminoShape e,int a0, int a1, int b0, int b1, int c0, int c1, int d0, int d1) {
+	public Piece(TerminoShape e,int a0, int a1, int b0, int b1, int c0, int c1, int d0, int d1,int color) {
 		shape = e;
-		pieceColor = RandomSingleton.getInstance().nextColor();
+		//pieceColor = RandomSingleton.getInstance().nextColor();
+		//pieceColor = color;
 		blocks = new Block[4];
-		blocks[0]= new Block(a0,a1,pieceColor);
-		blocks[1]=new Block(b0,b1,pieceColor);
-		blocks[2]=new Block(c0,c1,pieceColor);
-		blocks[3]=new Block(d0,d1,pieceColor);
+		blocks[0]= new Block(a0,a1,color);
+		blocks[1]=new Block(b0,b1,color);
+		blocks[2]=new Block(c0,c1,color);
+		blocks[3]=new Block(d0,d1,color);
 	}
 	
 	public void setVisible() {

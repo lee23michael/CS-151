@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Queue;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -16,15 +17,57 @@ import javax.swing.LayoutStyle;
 
 import edu.sjsu.cs151.tetris.Teteris;
 import edu.sjsu.cs151.tetris.model.Block;
+import edu.sjsu.cs151.tetris.model.Piece;
+import edu.sjsu.cs151.tetris.model.TerminoShape;
+
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.Box;
+import javax.swing.JTextPane;
+import java.awt.Component;
 public class Board {
 	static JPanel panel = new TestGamePanel();
+	static JPanel next_panel = new JPanel();
 	static JFrame frame = new JFrame("Border Layout");
+	static JPanel panel_1 = new JPanel();
 
-	public static void update(Block[][] g)
+	public static void update(Block[][] g,Queue<Piece> q,int score)
     {
 		//nextQueueArray = Teteris.getNextQueue();
+		JLabel imgLabel = new JLabel(Board.getImage(q.peek()));
+		next_panel.remove(imgLabel);
+		next_panel.add(imgLabel);
+		
+		panel_1.removeAll();
+		JTextPane txtpnScore = new JTextPane();
+		txtpnScore.setText("Score:");
+		JTextPane textPane = new JTextPane();
+		textPane.setText(Integer.toString(score));
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(57)
+							.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(82)
+							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(78, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(149)
+					.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(434, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
+		
     	frame.remove(panel);
     	panel = new TestGamePanel(g);
     	frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -36,8 +79,8 @@ public class Board {
 	{
 		
 		
-		JPanel panel_1 = new JPanel();
-		JPanel panel_2 = new JPanel();
+		
+		
 		JPanel panel_3 = new JPanel();
 		JLabel lable1 = new JLabel();
 		JLabel lable2 = new JLabel();
@@ -53,6 +96,7 @@ public class Board {
 		JLabel lable12 = new JLabel();
 		JLabel lable13 = new JLabel();
 		JLabel lable14 = new JLabel();
+		JLabel lable15 = new JLabel();
 		
 		
 		lable1.setText("Level:");
@@ -72,11 +116,12 @@ public class Board {
 		lable12.setText("3 Line Clear = 500 x Level ");
 		lable13.setText("Tetris (4 line) = 800 x Level");
 		lable14.setText("Tutorial");
-	
+		
+		next_panel.add(new JLabel(new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Line.jpg")));
 		
 		
 		panel_1.setPreferredSize(new Dimension(200,200));
-		panel_2.setPreferredSize(new Dimension(200,200));
+		next_panel.setPreferredSize(new Dimension(200,200));
 		panel_3.setPreferredSize(new Dimension(200,200));
 		
 		JLabel label = new JLabel("");
@@ -179,7 +224,36 @@ public class Board {
             
 		
 		frame.getContentPane().add(panel_1,BorderLayout.WEST);
-		frame.getContentPane().add(panel_2, BorderLayout.EAST);
+		
+		JTextPane txtpnScore = new JTextPane();
+		txtpnScore.setText("Score:");
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setText("0");
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(57)
+							.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(82)
+							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(78, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(149)
+					.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(434, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
+		frame.getContentPane().add(next_panel, BorderLayout.EAST);
 		frame.getContentPane().add(panel_3, BorderLayout.SOUTH);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		 KeyListener listener = new KeyListener() {
@@ -238,6 +312,28 @@ public class Board {
 		frame.setVisible(true);  
 	}
 	
+	public static ImageIcon getImage(Piece im)
+	{
+		TerminoShape x = im.getShap();
+		switch(x)
+		{
+		
+		case LINE:
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Line.png");
+		case LEFT_L:
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/leftL.png");
+		case RIGHT_L:
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/rightL");
+		case SQUARE:
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/square.png");
+		case RIGHT_ZIGZAG:
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/RightZ.png");
+		case LEFT_ZIGZAG:
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/leftZ.png");
+		 default: 
+			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Prtmaid.png");	
+		}
+	}
 	
 	
 	public  static void main(String[] args)

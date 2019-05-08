@@ -91,6 +91,8 @@ public class Model implements Serializable  {
 		{
 			nextPieceQueue.add(RandomSingleton.getInstance().nextPiece());
 		}
+		
+	
 	}
 	
 	private void getNextPiece()
@@ -115,10 +117,10 @@ public class Model implements Serializable  {
 		getNextPiece();
 	}
 	
-	public Piece[] getNextQueue()
+	public Queue<Piece> getNextQueue()
 	{
-		//Piece[] out = (Piece[]) nextPieceQueue
-		return null;
+		return nextPieceQueue;
+	
 	}
 	
 	public void rotate()

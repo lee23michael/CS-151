@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Queue;
 import java.util.Timer; 
 import java.util.TimerTask;
 
@@ -12,7 +13,6 @@ import edu.sjsu.cs151.tetris.model.Model;
 import edu.sjsu.cs151.tetris.model.Piece;
 import edu.sjsu.cs151.tetris.model.ScoreBoard;
 import edu.sjsu.cs151.tetris.ui.Board;
-import edu.sjsu.cs151.tetris.ui.Game;
 import edu.sjsu.cs151.tetris.ui.GameOver;
 import edu.sjsu.cs151.tetris.ui.MainMenu;
 import edu.sjsu.cs151.tetris.ui.TitleScreen;
@@ -73,7 +73,7 @@ public class Teteris
 		new TitleScreen().setVisible(true);
 	}
 	
-	public static Piece[] getNextQueue()
+	public static Queue<Piece> getNextQueue()
 	{
 		return model.getNextQueue();
 	}
@@ -160,7 +160,7 @@ private class PrintHelper extends TimerTask
 //		System.out.println(" ------------------- ");
 //		System.out.println(" ------------------- ");
 		
-			Board.update(model.getGrid());
+			Board.update(model.getGrid(),model.getNextQueue());
 		}else if(gameStart==0)
 		{
 			
