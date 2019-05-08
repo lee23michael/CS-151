@@ -145,6 +145,7 @@ public class Grid implements Serializable{
 			}
 			if(counter == 10)
 			{
+				lineCleared++;
 				Grid.deleteLine(x);
 				x = x+1; //check line x again becasue everthing went down one line
 			}

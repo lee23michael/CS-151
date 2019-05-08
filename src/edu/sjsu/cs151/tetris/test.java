@@ -28,7 +28,7 @@ public class test {
 		  
 		  while(Teteris.gameStart==0)
 		  {
-			  System.out.println("not Yet");
+			  System.out.println("NY");
 		  }
 		  
 		  test.start();

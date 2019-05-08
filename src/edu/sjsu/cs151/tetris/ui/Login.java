@@ -5,6 +5,8 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
+import edu.sjsu.cs151.tetris.Teteris;
+
 /**
  *
  * @author David
@@ -115,6 +117,7 @@ public class Login extends javax.swing.JFrame {
             jLabel4.setVisible(true);
         } else {
         this.dispose();
+        Teteris.setName(jTextField1.getText());
         new MainMenu().setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

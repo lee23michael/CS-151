@@ -1,6 +1,9 @@
 package edu.sjsu.cs151.tetris;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Timer; 
 import java.util.TimerTask;
 
@@ -10,6 +13,7 @@ import edu.sjsu.cs151.tetris.model.Piece;
 import edu.sjsu.cs151.tetris.model.ScoreBoard;
 import edu.sjsu.cs151.tetris.ui.Board;
 import edu.sjsu.cs151.tetris.ui.Game;
+import edu.sjsu.cs151.tetris.ui.GameOver;
 import edu.sjsu.cs151.tetris.ui.MainMenu;
 import edu.sjsu.cs151.tetris.ui.TitleScreen;
   
@@ -17,7 +21,7 @@ import edu.sjsu.cs151.tetris.ui.TitleScreen;
 
 public class Teteris 
 { 
-	public String name = "ExampleName";
+	public static String name;
 	public static Model model;
 	private static int finalizedCounter;
 	public static int gameStart = 0;
@@ -25,8 +29,14 @@ public class Teteris
 	
 	public Teteris()
 	{
-		model = new Model(name);
 		
+		
+	}
+	
+	public static void setName(String name)
+	{
+		Teteris.name = name;
+		model = new Model(name);
 	}
 	
 	public void start()
@@ -40,6 +50,24 @@ public class Teteris
         
         
 	}
+	
+//	public static void main(String args[]) {
+//		
+//		model = new Model("xxsaw");
+//		
+//		
+//		 Map<String,Integer> map = Teteris.getScoreBoardMap();
+//	        
+//	        String[][] array = new String[map.size()][2];
+//	        int count = 0;
+//	        for(Map.Entry<String,Integer> entry : map.entrySet()){
+//	            array[count][0] = entry.getKey();
+//	            array[count][1] = entry.getValue().toString();
+//	            count++;
+//	        }
+//	        
+//	        System.out.println(Arrays.deepToString(array));
+//	}
 	
 	public void startGameTitle() {
 		new TitleScreen().setVisible(true);
@@ -69,6 +97,10 @@ public class Teteris
 	public static void FinalizedCounterReset() {
 		
 		finalizedCounter = 0;
+	}
+	
+	public static void refreshScoreBoard() {
+		new ScoreBoard();
 	}
 	
 	
@@ -101,6 +133,7 @@ private class TimerHelperDrop extends TimerTask
 			if(model.drop()||Teteris.getFinalizedCounter()<3)
 			{
 				Teteris.FinalizedCounterPlus(); //hold three drops till a piece finalize
+				System.out.print(model.getCurrentUser().getScore());
 			}
 			else
 			{
@@ -126,7 +159,15 @@ private class PrintHelper extends TimerTask
 //		model.printBoard();
 //		System.out.println(" ------------------- ");
 //		System.out.println(" ------------------- ");
+		
 			Board.update(model.getGrid());
+		}else if(gameStart==0)
+		{
+			
+			gameStart = 2;
+			Teteris.refreshScoreBoard();
+			new GameOver();
+			
 		}
 		
 		

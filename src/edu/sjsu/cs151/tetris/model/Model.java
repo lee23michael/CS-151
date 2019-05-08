@@ -379,6 +379,7 @@ public class Model implements Serializable  {
 				//3 (triple)	300
 				//4 (tetris)	1200
 		int lineCleared = Grid.checkLines();
+		//System.out.print("Line Clear: "+lineCleared);
 		switch(lineCleared)
 		{
 			case 0:
