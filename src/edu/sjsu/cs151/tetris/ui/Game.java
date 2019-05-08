@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
+import edu.sjsu.cs151.tetris.Teteris;
 import edu.sjsu.cs151.tetris.model.Block;
 import edu.sjsu.cs151.tetris.ui.TestGamePanel.CellPane;
 
@@ -333,6 +334,9 @@ public class Game extends javax.swing.JFrame {
                 new Game().setVisible(true);
             }
         });
+        
+        //Teteris test = new Teteris();
+        //test.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

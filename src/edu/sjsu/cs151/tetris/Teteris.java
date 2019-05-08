@@ -8,7 +8,8 @@ import edu.sjsu.cs151.tetris.model.Block;
 import edu.sjsu.cs151.tetris.model.Model;
 import edu.sjsu.cs151.tetris.model.Piece;
 import edu.sjsu.cs151.tetris.model.ScoreBoard;
-import edu.sjsu.cs151.tetris.ui.TestGame; 
+import edu.sjsu.cs151.tetris.ui.Board;
+import edu.sjsu.cs151.tetris.ui.Game;
   
 //Controller Class
 
@@ -27,7 +28,7 @@ public class Teteris
 	
 	public void start()
 	{
-		new TestGame();
+		new Board();
 		Timer timer = new Timer(); 
 		
         timer.scheduleAtFixedRate(new TimerHelperDrop(), 300, 800);
@@ -118,7 +119,7 @@ private class PrintHelper extends TimerTask
 //		model.printBoard();
 //		System.out.println(" ------------------- ");
 //		System.out.println(" ------------------- ");
-			TestGame.update(model.getGrid());
+			Board.update(model.getGrid());
 		}
         
        
