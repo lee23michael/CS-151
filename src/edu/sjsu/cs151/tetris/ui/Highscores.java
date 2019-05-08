@@ -4,6 +4,16 @@
  * and open the template in the editor.
  */
 package edu.sjsu.cs151.tetris.ui;
+import javax.swing.JTabbedPane;
+import javax.swing.GroupLayout.Alignment;
+
+import edu.sjsu.cs151.tetris.Teteris;
+
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.GroupLayout;
+import javax.swing.JTable;
 
 /**
  *
@@ -43,17 +53,40 @@ public class Highscores extends javax.swing.JFrame {
         jLabel3.setText("High Scores");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
+        
+        String[] columnNames = { "Name", "Score" }; 
+       
+        
+        
+        Map<String,Integer> map = Teteris.getScoreBoardMap();
+        
+        String[][] array = new String[map.size()][2];
+        int count = 0;
+        for(Map.Entry<String,Integer> entry : map.entrySet()){
+            array[count][0] = entry.getKey();
+            array[count][1] = entry.getValue().toString();
+            count++;
+        }
+        
+        table = new JTable(array,columnNames);
+       
+       
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(table, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+        			.addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(table, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+        			.addContainerGap())
         );
+        jPanel1.setLayout(jPanel1Layout);
 
         jButton1.setText("Return to Main Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -149,5 +182,5 @@ public class Highscores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+    private JTable table;
 }

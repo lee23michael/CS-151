@@ -14,6 +14,7 @@ public class ScoreBoard{
 	
 	public ScoreBoard()
 	{
+		User.RefreshUserList();
 		score_list = new LinkedHashMap<String,Integer>();
 		
 		for(int i = 0; i<User.getUserList().size(); i++)
@@ -30,6 +31,8 @@ public class ScoreBoard{
 		
 		return score_list;
 	}
+	
+	
 	
 
 }
