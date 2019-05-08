@@ -11,6 +11,7 @@ import edu.sjsu.cs151.tetris.model.ScoreBoard;
 import edu.sjsu.cs151.tetris.ui.Board;
 import edu.sjsu.cs151.tetris.ui.Game;
 import edu.sjsu.cs151.tetris.ui.MainMenu;
+import edu.sjsu.cs151.tetris.ui.TitleScreen;
   
 //Controller Class
 
@@ -41,7 +42,7 @@ public class Teteris
 	}
 	
 	public void startGameTitle() {
-		new MainMenu().setVisible(true);
+		new TitleScreen().setVisible(true);
 	}
 	
 	public static Piece[] getNextQueue()

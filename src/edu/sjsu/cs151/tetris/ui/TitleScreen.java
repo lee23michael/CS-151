@@ -1,3 +1,5 @@
+package edu.sjsu.cs151.tetris.ui;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -188,7 +190,7 @@ public class TitleScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
             this.dispose();
-           // new Login().setVisible(true);
+           new Login().setVisible(true);
     }                                        
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {                                   
@@ -198,8 +200,8 @@ public class TitleScreen extends javax.swing.JFrame {
         
         if (evt.getKeyCode() == 13) {
             this.dispose();
-            //new Login().setVisible(true);
-            System.out.print("enter pressed");
+            new Login().setVisible(true);
+            
         }
     }                                  
 
