@@ -77,8 +77,8 @@ public class Teteris
     public static void rotate() {
     	model.rotate();
     }
-    public static void drop() {
-    	model.drop();
+    public static boolean drop() {
+    	return model.drop();
     }
 
 

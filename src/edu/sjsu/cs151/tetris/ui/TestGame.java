@@ -72,6 +72,14 @@ public class TestGame {
             		        case KeyEvent.VK_RIGHT :
             		        	Teteris.moveRight();
             		            break;
+            		        case KeyEvent.VK_SPACE ://hard drop
+            		        {
+            		        	while(Teteris.drop())
+            		        	{
+            		        		
+            		        	}
+            		        }
+            		            break;
             		     }
             		 
             		}
