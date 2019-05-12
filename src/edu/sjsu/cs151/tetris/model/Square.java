@@ -2,7 +2,7 @@ package edu.sjsu.cs151.tetris.model;
 
 public class Square extends Piece {
 	public Square() {
-		super(TerminoShape.SQUARE,0,0,0,1,1,0,1,1);
+		super(TerminoShape.SQUARE,0,0,0,1,1,0,1,1,1);
 	}
 	
 	@Override

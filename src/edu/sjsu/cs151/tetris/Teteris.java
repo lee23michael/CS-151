@@ -21,6 +21,8 @@ import edu.sjsu.cs151.tetris.ui.TitleScreen;
 
 public class Teteris 
 { 
+	/*
+	 */
 	public static String name;
 	public static Model model;
 	private static int finalizedCounter;
@@ -44,8 +46,9 @@ public class Teteris
 		new Board();
 		Timer timer = new Timer(); 
 		gameStart = 0;
-        timer.scheduleAtFixedRate(new TimerHelperDrop(), 300, 800);
-        timer.scheduleAtFixedRate(new PrintHelper(), 1, 16);
+		model.setGameLost(false);
+        timer.scheduleAtFixedRate(new TimerHelperDrop(), 1, 800);
+        timer.scheduleAtFixedRate(new PrintHelper(), 200, 16);
         assert true : "Game Started";
         
         
@@ -120,6 +123,11 @@ public class Teteris
     public static boolean drop() {
     	return model.drop();
     }
+    
+    public static void exit()
+    {
+    	model.exit();
+    }
 
 
 private class TimerHelperDrop extends TimerTask 
@@ -160,12 +168,13 @@ private class PrintHelper extends TimerTask
 //		System.out.println(" ------------------- ");
 //		System.out.println(" ------------------- ");
 		
-			Board.update(model.getGrid(),model.getNextQueue());
+			Board.update(model.getGrid());
 		}else if(gameStart==0)
 		{
 			
 			gameStart = 2;
 			Teteris.refreshScoreBoard();
+			Board.frame.dispose();
 			new GameOver();
 			
 		}

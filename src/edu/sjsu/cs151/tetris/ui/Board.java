@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Queue;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -17,60 +16,25 @@ import javax.swing.LayoutStyle;
 
 import edu.sjsu.cs151.tetris.Teteris;
 import edu.sjsu.cs151.tetris.model.Block;
-import edu.sjsu.cs151.tetris.model.Piece;
-import edu.sjsu.cs151.tetris.model.TerminoShape;
-
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.Box;
-import javax.swing.JTextPane;
-import java.awt.Component;
-public class Board {
-	static JPanel panel = new TestGamePanel();
-	static JPanel next_panel = new JPanel();
-	static JFrame frame = new JFrame("Border Layout");
-	static JPanel panel_1 = new JPanel();
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
-	public static void update(Block[][] g,Queue<Piece> q,int score)
+public class Board extends JFrame
+{
+	static JPanel grid_panel = new TestGamePanel();
+	public static JFrame frame = new JFrame("Border Layout");
+
+	public static void update(Block[][] g)
     {
 		//nextQueueArray = Teteris.getNextQueue();
-		JLabel imgLabel = new JLabel(Board.getImage(q.peek()));
-		next_panel.remove(imgLabel);
-		next_panel.add(imgLabel);
-		
-		panel_1.removeAll();
-		JTextPane txtpnScore = new JTextPane();
-		txtpnScore.setText("Score:");
-		JTextPane textPane = new JTextPane();
-		textPane.setText(Integer.toString(score));
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(57)
-							.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(82)
-							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(78, Short.MAX_VALUE))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(149)
-					.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(434, Short.MAX_VALUE))
-		);
-		panel_1.setLayout(gl_panel_1);
-		
-    	frame.remove(panel);
-    	panel = new TestGamePanel(g);
-    	frame.getContentPane().add(panel, BorderLayout.CENTER);
+    	frame.remove(grid_panel);
+    	grid_panel = new TestGamePanel(g);
+    	frame.getContentPane().add(grid_panel, BorderLayout.CENTER);
     	//frame.setLocationRelativeTo(null);
        frame.setVisible(true);
     }
@@ -78,10 +42,12 @@ public class Board {
 	public Board()
 	{
 		
-		
-		
-		
-		JPanel panel_3 = new JPanel();
+		JPanel scoreNlevel_panel = new JPanel();
+		scoreNlevel_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		JPanel hold_panel = new JPanel();
+		hold_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		JPanel tutorial_panel = new JPanel();
+		tutorial_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		JLabel lable1 = new JLabel();
 		JLabel lable2 = new JLabel();
 		JLabel lable3 = new JLabel();
@@ -96,13 +62,13 @@ public class Board {
 		JLabel lable12 = new JLabel();
 		JLabel lable13 = new JLabel();
 		JLabel lable14 = new JLabel();
-		JLabel lable15 = new JLabel();
+		lable14.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		
 		
 		lable1.setText("Level:");
 		lable2.setText("Score:");
-		lable3.setFont(new Font("Tahoma", 0, 13));
-		lable3.setText("Controls");
+		lable3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lable3.setText("Controls ");
 		lable4.setFont(new Font("Tahoma", 0, 13));
 		lable4.setText("Rotate");
 		lable5.setText("Up Arrow = Rotate");
@@ -116,156 +82,191 @@ public class Board {
 		lable12.setText("3 Line Clear = 500 x Level ");
 		lable13.setText("Tetris (4 line) = 800 x Level");
 		lable14.setText("Tutorial");
+	
 		
-		next_panel.add(new JLabel(new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Line.jpg")));
 		
-		
-		panel_1.setPreferredSize(new Dimension(200,200));
-		next_panel.setPreferredSize(new Dimension(200,200));
-		panel_3.setPreferredSize(new Dimension(200,200));
+		scoreNlevel_panel.setPreferredSize(new Dimension(200,200));
+		hold_panel.setPreferredSize(new Dimension(200,200));
+		tutorial_panel.setPreferredSize(new Dimension(200,200));
 		
 		JLabel label = new JLabel("");
 		
 		JLabel lblBasicScoring = new JLabel("Basic scoring");
-		lblBasicScoring.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblBasicScoring.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		JLabel lblUpArrow = new JLabel("Up Arrow = Rotate");
-		lblUpArrow.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblUpArrow.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblLrArrows = new JLabel("L/R Arrows = Move L/R");
-		lblLrArrows.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblLrArrows.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblDownArrow = new JLabel("Down Arrow = Soft Drop");
-		lblDownArrow.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDownArrow.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblSpacebarHard = new JLabel("Spacebar = Hard Drop");
-		lblSpacebarHard.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblSpacebarHard.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblLineClear = new JLabel("1 Line Clear = 40");
-		lblLineClear.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblLineClear.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblLineClear_1 = new JLabel("2 Line Clear =100");
-		lblLineClear_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblLineClear_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblLineClear_2 = new JLabel("3 Line Clear = 300  ");
-		lblLineClear_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblLineClear_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		JLabel lblTetrisLine = new JLabel("Tetris (4 line) = 1200");
-		lblTetrisLine.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		GroupLayout panel3Layout = (new GroupLayout(panel_3));
-		panel3Layout.setHorizontalGroup(
-			panel3Layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(panel3Layout.createSequentialGroup()
-					.addGap(183)
-					.addGroup(panel3Layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, panel3Layout.createSequentialGroup()
-							.addGap(12)
+		lblTetrisLine.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		GroupLayout gl_tutorial_panel = (new GroupLayout(tutorial_panel));
+		gl_tutorial_panel.setHorizontalGroup(
+			gl_tutorial_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_tutorial_panel.createSequentialGroup()
+					.addContainerGap(101, Short.MAX_VALUE)
+					.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_tutorial_panel.createSequentialGroup()
+							.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblLrArrows)
+								.addComponent(lblDownArrow, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblUpArrow)
+								.addComponent(lblSpacebarHard))
+							.addGap(9))
+						.addGroup(gl_tutorial_panel.createSequentialGroup()
 							.addComponent(lable3)
-							.addGap(102))
-						.addComponent(lblSpacebarHard)
-						.addComponent(lblDownArrow, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblUpArrow)
-						.addComponent(lblLrArrows))
-					.addGap(61)
-					.addGroup(panel3Layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(panel3Layout.createSequentialGroup()
-							.addComponent(label)
-							.addPreferredGap(ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-							.addGroup(panel3Layout.createParallelGroup(Alignment.LEADING)
-								.addGroup(panel3Layout.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblLineClear_1)
-									.addComponent(lblLineClear)
-									.addComponent(lblLineClear_2)
-									.addComponent(lblTetrisLine))
-								.addGroup(Alignment.TRAILING, panel3Layout.createSequentialGroup()
-									.addComponent(lblBasicScoring)
-									.addGap(39)))
-							.addGap(123))
-						.addGroup(panel3Layout.createSequentialGroup()
-							.addGap(58)
-							.addComponent(lable14)
-							.addContainerGap(374, Short.MAX_VALUE))))
-		);
-		panel3Layout.setVerticalGroup(
-			panel3Layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(panel3Layout.createSequentialGroup()
-					.addComponent(lable14)
-					.addGap(77)
-					.addComponent(label)
-					.addContainerGap(97, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, panel3Layout.createSequentialGroup()
-					.addGroup(panel3Layout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(panel3Layout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblBasicScoring)
+							.addGap(164)))
+					.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_tutorial_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lable14)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_tutorial_panel.createSequentialGroup()
+									.addGap(309)
+									.addComponent(label))
+								.addGroup(gl_tutorial_panel.createSequentialGroup()
+									.addGap(174)
+									.addComponent(lblBasicScoring)))
+							.addGap(21))
+						.addGroup(Alignment.TRAILING, gl_tutorial_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+							.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblLineClear_1)
+								.addComponent(lblLineClear)
+								.addComponent(lblLineClear_2)
+								.addComponent(lblTetrisLine))
+							.addGap(57))))
+		);
+		gl_tutorial_panel.setVerticalGroup(
+			gl_tutorial_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_tutorial_panel.createSequentialGroup()
+					.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBasicScoring)
+						.addComponent(lable3)
+						.addComponent(lable14))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_tutorial_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_tutorial_panel.createSequentialGroup()
+							.addComponent(lblUpArrow)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblLrArrows)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblDownArrow, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblSpacebarHard))
+						.addGroup(gl_tutorial_panel.createSequentialGroup()
 							.addComponent(lblLineClear)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblLineClear_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblLineClear_2)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblTetrisLine))
-						.addGroup(panel3Layout.createSequentialGroup()
-							.addGap(33)
-							.addComponent(lable3)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblUpArrow)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblLrArrows)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblDownArrow, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblSpacebarHard)))
-					.addGap(30))
+							.addComponent(lblTetrisLine)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(label)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-        panel_3.setLayout(panel3Layout);
+        tutorial_panel.setLayout(gl_tutorial_panel);
 
             
 		
-		frame.getContentPane().add(panel_1,BorderLayout.WEST);
+		frame.getContentPane().add(scoreNlevel_panel,BorderLayout.WEST);
 		
-		JTextPane txtpnScore = new JTextPane();
-		txtpnScore.setText("Score:");
+		JLabel lblScore = new JLabel("Score ");
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setText("0");
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(57)
-							.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(82)
-							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(78, Short.MAX_VALUE))
+		JLabel lblLevel = new JLabel("Level ");
+		lblLevel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		GroupLayout gl_scoreNlevel_panel = new GroupLayout(scoreNlevel_panel);
+		gl_scoreNlevel_panel.setHorizontalGroup(
+			gl_scoreNlevel_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_scoreNlevel_panel.createSequentialGroup()
+					.addGap(29)
+					.addGroup(gl_scoreNlevel_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblLevel, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblScore))
+					.addContainerGap(46, Short.MAX_VALUE))
 		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(149)
-					.addComponent(txtpnScore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(434, Short.MAX_VALUE))
+		gl_scoreNlevel_panel.setVerticalGroup(
+			gl_scoreNlevel_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_scoreNlevel_panel.createSequentialGroup()
+					.addGap(159)
+					.addComponent(lblScore)
+					.addGap(192)
+					.addComponent(lblLevel)
+					.addContainerGap(278, Short.MAX_VALUE))
 		);
-		panel_1.setLayout(gl_panel_1);
-		frame.getContentPane().add(next_panel, BorderLayout.EAST);
-		frame.getContentPane().add(panel_3, BorderLayout.SOUTH);
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		 KeyListener listener = new KeyListener() {
+		scoreNlevel_panel.setLayout(gl_scoreNlevel_panel);
+		frame.getContentPane().add(hold_panel, BorderLayout.EAST);
+		
+		JPanel hold1 = new JPanel();
+		hold1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		
+		JPanel hold2 = new JPanel();
+		hold2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		
+		JPanel hold3 = new JPanel();
+		hold3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		GroupLayout gl_hold_panel = new GroupLayout(hold_panel);
+		gl_hold_panel.setHorizontalGroup(
+			gl_hold_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_hold_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_hold_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(hold3, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+						.addComponent(hold2, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+						.addComponent(hold1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_hold_panel.setVerticalGroup(
+			gl_hold_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_hold_panel.createSequentialGroup()
+					.addGap(94)
+					.addComponent(hold1, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
+					.addComponent(hold2, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addGap(43)
+					.addComponent(hold3, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(94, Short.MAX_VALUE))
+		);
+		hold_panel.setLayout(gl_hold_panel);
+		frame.getContentPane().add(tutorial_panel, BorderLayout.SOUTH);
+		grid_panel.setForeground(Color.WHITE);
+		frame.getContentPane().add(grid_panel, BorderLayout.CENTER);
+		grid_panel.setBackground(Color.WHITE);
+		grid_panel.setPreferredSize(new Dimension(300, 300));
+		grid_panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+		 KeyListener listener = new KeyListener() 
+		 {
          	
          	
        		 
      		@Override
      		 
-     		public void keyPressed(KeyEvent event) {
+     		public void keyPressed(KeyEvent event) 
+     		{
      		 
      			int keyCode = event.getKeyCode();
-     		    switch( keyCode ) { 
+     		    switch( keyCode ) 
+     		    { 
      		        case KeyEvent.VK_UP:	
      		            Teteris.rotate();
      		            break;
@@ -286,18 +287,26 @@ public class Board {
     		        		}
     		        	}
     		            break;
+     		       case KeyEvent.VK_ESCAPE:
+     		       {
+     		    	   Teteris.exit();
+     		    	   break;
+     		       }
+     		    	   
      		     }
      		 
      		}
 
      		@Override
-     		public void keyTyped(KeyEvent e) {
+     		public void keyTyped(KeyEvent e) 
+     		{
      			// TODO Auto-generated method stub
      			
      		}
 
      		@Override
-     		public void keyReleased(KeyEvent e) {
+     		public void keyReleased(KeyEvent e) 
+     		{
      			// TODO Auto-generated method stub
      			
      		}
@@ -308,36 +317,18 @@ public class Board {
 	
 		
 		
-		frame.setSize(934,936);  
+		frame.setSize(950,1000);  
 		frame.setVisible(true);  
 	}
 	
-	public static ImageIcon getImage(Piece im)
-	{
-		TerminoShape x = im.getShap();
-		switch(x)
-		{
-		
-		case LINE:
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Line.png");
-		case LEFT_L:
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/leftL.png");
-		case RIGHT_L:
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/rightL");
-		case SQUARE:
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/square.png");
-		case RIGHT_ZIGZAG:
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/RightZ.png");
-		case LEFT_ZIGZAG:
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/leftZ.png");
-		 default: 
-			return new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Prtmaid.png");	
-		}
-	}
 	
 	
 	public  static void main(String[] args)
 	{
-		new Board();
+		JFrame frame = new Board();
+		frame.pack();
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setLocationRelativeTo(null);
+	  
 	}
 }

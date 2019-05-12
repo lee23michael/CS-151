@@ -26,6 +26,7 @@ public class Highscores extends javax.swing.JFrame {
      */
     public Highscores() {
         initComponents();
+        setResizable(false);
     }
 
     /**

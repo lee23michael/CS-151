@@ -12,11 +12,11 @@ import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
 import java.awt.CardLayout;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextPane;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+//import com.jgoodies.forms.layout.FormLayout;
+//import com.jgoodies.forms.layout.ColumnSpec;
+//import com.jgoodies.forms.layout.RowSpec;
 
 import edu.sjsu.cs151.tetris.model.User;
 
@@ -34,7 +34,7 @@ import java.awt.event.MouseEvent;
 public class GameOver extends JFrame{
 	private JTextField txtGameOver;
 	JFrame frame = new JFrame("Testing");
-	JLabel imgLabel = new JLabel(new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/GAMEOVER.jpg"));
+	JLabel imgLabel = new JLabel(new ImageIcon("C:\\Users\\lee23\\git\\CS-151\\src\\edu\\sjsu\\cs151\\tetris\\ui\\images\\GAMEOVER.jpg"));
 	public GameOver() {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		

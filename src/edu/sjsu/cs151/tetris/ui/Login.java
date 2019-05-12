@@ -17,6 +17,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+    	setResizable(false);
         initComponents();
         jLabel4.setVisible(false);
     }

@@ -24,7 +24,7 @@ public class test {
 		  Teteris test = new Teteris();
 		  
 		  test.startGameTitle();
-		  
+		  Teteris.getScoreBoardMap();
 		  
 		  while(Teteris.gameStart==0)
 		  {

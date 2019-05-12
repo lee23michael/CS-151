@@ -10,10 +10,14 @@ import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
 import edu.sjsu.cs151.tetris.model.Block;
+import javax.swing.border.LineBorder;
 
 public class TestGamePanel extends JPanel {
 
     public TestGamePanel() {
+    	setForeground(Color.WHITE);
+    	setBackground(Color.WHITE);
+    	setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
     	
         setLayout(new GridBagLayout());
 
@@ -26,14 +30,14 @@ public class TestGamePanel extends JPanel {
 
                 CellPane cellPane = new CellPane();
                 Border border = null;
-                border = new MatteBorder(1, 1, 0, 0, Color.DARK_GRAY);
+                border = new MatteBorder(1, 1, 0, 0, Color.WHITE);
                 
                 
                 
-                if(row==0&&col==4)
-                {
-                cellPane.setBackground(Color.BLUE);
-                }
+//                if(row==0&&col==4)
+//                {
+//                cellPane.setBackground(Color.BLUE);
+//                }
                 
                 
                 cellPane.setBorder(border);
@@ -61,7 +65,7 @@ public class TestGamePanel extends JPanel {
 
                 CellPane cellPane = new CellPane();
                 Border border = null;
-                border = new MatteBorder(1, 1, 0, 0, Color.GRAY);
+                border = new MatteBorder(1, 1, 0, 0, Color.WHITE);
                 
                 
                 
@@ -98,7 +102,7 @@ public class TestGamePanel extends JPanel {
 
 	                  CellPane cellPane = new CellPane();
 	                  Border border = null;
-	                  border = new MatteBorder(1, 1, 0, 0, Color.GRAY);
+	                  border = new MatteBorder(1, 1, 0, 0, Color.WHITE);
 	                  
 	                  
 	                  
@@ -130,7 +134,7 @@ public class TestGamePanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(25, 25);
+        return new Dimension(20, 20);
     	}
 	}
 	}

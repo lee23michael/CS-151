@@ -29,27 +29,28 @@ public class Model implements Serializable  {
 	
 	public Model(String name)
 	{
+		gameLost = false;
 		assert true : "In Model Constructor";
 		User.loadUserList();//load previous users data
 		assert true : "UserList Loaded";
-		LoadState();
+		//LoadState();
 		assert true : "State Loaded";
 		
-		if(Model.gameSaved == true)
-		{
-			assert true : "Gamed Saved Before";
-			currentUser = User.getCurrentUser();
-			Grid.loadGrid();
-			LoadNextQueue();
-			
-			
-		}else
-		{
+//		if(Model.gameSaved == true)
+//		{
+//			assert true : "Gamed Saved Before";
+//			currentUser = User.getCurrentUser();
+//			Grid.loadGrid();
+//			LoadNextQueue();
+//			
+//			
+//		}else
+//		{
 			assert true : "New Game not saved before";
 			currentUser = new User(name);
 			new Grid();
 			fillNextQueue();
-		}
+		//}
 		
 		new ScoreBoard();
 	}
@@ -71,6 +72,10 @@ public class Model implements Serializable  {
 				gameLost = true;
 			}
 		}
+	}
+	
+	public static void exit() {
+		gameLost = true;
 	}
 	
 	public boolean getLostCondition()
@@ -527,6 +532,11 @@ public class Model implements Serializable  {
 	public void printBoard()
 	{
 		Grid.Print();
+	}
+	
+	public static void setGameLost(boolean x)
+	{
+		gameLost = x;
 	}
 	
 	public void showSocoreBoard()

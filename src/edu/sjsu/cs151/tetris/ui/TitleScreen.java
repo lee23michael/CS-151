@@ -22,6 +22,7 @@ public class TitleScreen extends javax.swing.JFrame {
      */
     public TitleScreen() {
         initComponents();
+        setResizable(false);
     }
 
     /**
@@ -94,24 +95,24 @@ public class TitleScreen extends javax.swing.JFrame {
 
         
         
-        ImageIcon icon1 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetromino_S.png");
+        ImageIcon icon1 = new ImageIcon("./CS-151/src/edu/sjsu/cs151/tetris/ui/images/Tetromino_S.png");
         jLabel2.setIcon(icon1);
-        ImageIcon icon2 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetromino_Reverse_L.png");
+        ImageIcon icon2 = new ImageIcon("./CS-151/src/edu/sjsu/cs151/tetris/ui/images/Tetromino_L.png");
         jLabel3.setIcon(icon2);
-        ImageIcon icon3 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetromino_o.png");
+        ImageIcon icon3 = new ImageIcon("./images/Tetromino_o.png");
         jLabel4.setIcon(icon3);
-        ImageIcon icon4 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetris_Piece.png");
+        ImageIcon icon4 = new ImageIcon("./images/Tetris_Piece.png");
         jLabel5.setIcon(icon4);
-        ImageIcon icon5 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetromino_I.jpg");
+        ImageIcon icon5 = new ImageIcon("./images/Tetromino_I.jpg");
         jLabel6.setIcon(icon5);
-        ImageIcon icon6 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetromino_L.png");
+        ImageIcon icon6 = new ImageIcon("./images/Tetromino_L.png");
         jLabel7.setIcon(icon6);
-        ImageIcon icon7 = new ImageIcon("src/edu/sjsu/cs151/tetris/ui/images/Tetromino_Reverse_S.png");
+        ImageIcon icon7 = new ImageIcon("./images/Tetromino_Reverse_S.png");
         jLabel8.setIcon(icon7);
 
         jLabel10.setText("Made By: David, Ziwen, Vincent");
 
-        jLabel9.setText("*Press Esc to exit");
+        //jLabel9.setText("*Press Esc to exit");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
