@@ -1,6 +1,7 @@
 package edu.sjsu.cs151.tetris.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -14,40 +15,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 
-import edu.sjsu.cs151.tetris.Teteris;
+import edu.sjsu.cs151.tetris.controller.Controller;
+import edu.sjsu.cs151.tetris.controller.GameInfo;
+import edu.sjsu.cs151.tetris.message.*;
 import edu.sjsu.cs151.tetris.model.Block;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.JTextField;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
-
-public class Board extends JFrame
-{
+public class Board {
 	static JPanel grid_panel = new TestGamePanel();
+	static JPanel scoreNlevel_panel = new JPanel();
+	static JPanel hold_panel = new JPanel();
 	public static JFrame frame = new JFrame("Border Layout");
+	private static String score = "0";
 
-	public static void update(Block[][] g)
-    {
-		//nextQueueArray = Teteris.getNextQueue();
-    	frame.remove(grid_panel);
-    	grid_panel = new TestGamePanel(g);
-    	frame.getContentPane().add(grid_panel, BorderLayout.CENTER);
-    	//frame.setLocationRelativeTo(null);
-       frame.setVisible(true);
-    }
+	
+	public static void setScore(int x)
+	{
+		score = String.valueOf(x);
+	}
 	
 	public Board()
 	{
+		frame.setBackground(Color.black);
 		
-		JPanel scoreNlevel_panel = new JPanel();
-		scoreNlevel_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		JPanel hold_panel = new JPanel();
-		hold_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		GameInfo.setGamePage(4);
+		frame.setResizable(false);
+		
 		JPanel tutorial_panel = new JPanel();
 		tutorial_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		
+		
 		JLabel lable1 = new JLabel();
 		JLabel lable2 = new JLabel();
 		JLabel lable3 = new JLabel();
@@ -62,13 +60,12 @@ public class Board extends JFrame
 		JLabel lable12 = new JLabel();
 		JLabel lable13 = new JLabel();
 		JLabel lable14 = new JLabel();
-		lable14.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		
 		
 		lable1.setText("Level:");
 		lable2.setText("Score:");
 		lable3.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lable3.setText("Controls ");
+		lable3.setText("Controls");
 		lable4.setFont(new Font("Tahoma", 0, 13));
 		lable4.setText("Rotate");
 		lable5.setText("Up Arrow = Rotate");
@@ -82,14 +79,11 @@ public class Board extends JFrame
 		lable12.setText("3 Line Clear = 500 x Level ");
 		lable13.setText("Tetris (4 line) = 800 x Level");
 		lable14.setText("Tutorial");
-	
+		lable14.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		
 		
-		scoreNlevel_panel.setPreferredSize(new Dimension(200,200));
-		hold_panel.setPreferredSize(new Dimension(200,200));
-		tutorial_panel.setPreferredSize(new Dimension(200,200));
 		
-		JLabel label = new JLabel("");
+JLabel label = new JLabel("");
 		
 		JLabel lblBasicScoring = new JLabel("Basic scoring");
 		lblBasicScoring.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -187,35 +181,48 @@ public class Board extends JFrame
         tutorial_panel.setLayout(gl_tutorial_panel);
 
             
+        
+        
+        //editing 
+        
+        
+		
+
+        
+		scoreNlevel_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		hold_panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		
 		frame.getContentPane().add(scoreNlevel_panel,BorderLayout.WEST);
 		
 		JLabel lblScore = new JLabel("Score ");
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
-		JLabel lblLevel = new JLabel("Level ");
-		lblLevel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		JLabel label_1 = new JLabel(score);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GroupLayout gl_scoreNlevel_panel = new GroupLayout(scoreNlevel_panel);
 		gl_scoreNlevel_panel.setHorizontalGroup(
 			gl_scoreNlevel_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_scoreNlevel_panel.createSequentialGroup()
-					.addGap(29)
 					.addGroup(gl_scoreNlevel_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblLevel, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblScore))
-					.addContainerGap(46, Short.MAX_VALUE))
+						.addGroup(gl_scoreNlevel_panel.createSequentialGroup()
+							.addGap(41)
+							.addComponent(lblScore))
+						.addGroup(gl_scoreNlevel_panel.createSequentialGroup()
+							.addGap(83)
+							.addComponent(label_1)))
+					.addContainerGap(47, Short.MAX_VALUE))
 		);
 		gl_scoreNlevel_panel.setVerticalGroup(
 			gl_scoreNlevel_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_scoreNlevel_panel.createSequentialGroup()
-					.addGap(159)
+					.addGap(167)
 					.addComponent(lblScore)
-					.addGap(192)
-					.addComponent(lblLevel)
-					.addContainerGap(278, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(label_1)
+					.addContainerGap(479, Short.MAX_VALUE))
 		);
 		scoreNlevel_panel.setLayout(gl_scoreNlevel_panel);
-		frame.getContentPane().add(hold_panel, BorderLayout.EAST);
+		
 		
 		JPanel hold1 = new JPanel();
 		hold1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -248,16 +255,28 @@ public class Board extends JFrame
 					.addContainerGap(94, Short.MAX_VALUE))
 		);
 		hold_panel.setLayout(gl_hold_panel);
+		
+		
+		
+		
+        //hold_panel.setLayout(gl_hold_panel);
+		
 		frame.getContentPane().add(tutorial_panel, BorderLayout.SOUTH);
 		grid_panel.setForeground(Color.WHITE);
 		frame.getContentPane().add(grid_panel, BorderLayout.CENTER);
 		grid_panel.setBackground(Color.WHITE);
 		grid_panel.setPreferredSize(new Dimension(300, 300));
 		grid_panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		 KeyListener listener = new KeyListener() 
-		 {
+		
+		
+		frame.getContentPane().add(scoreNlevel_panel,BorderLayout.WEST);
+    	frame.getContentPane().add(hold_panel, BorderLayout.EAST);
+		
+		////
+		
+		 KeyListener listener = new KeyListener() {
          	
-         	
+         	//board Need to be update from below
        		 
      		@Override
      		 
@@ -305,25 +324,64 @@ public class Board extends JFrame
      			// TODO Auto-generated method stub
      			
      		}
+     		
+     		
+     		
+     		
      };
+     
+     
 
          frame.addKeyListener(listener);
 		
 	
 		
 		
-		frame.setSize(934,936);  
+		frame.setSize(937,908);  
+		frame.pack();
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setLocationRelativeTo(null);
 		frame.setVisible(true);  
+		
+		
+		
+
+		//board changes ends here
+
+		
+		
 	}
+	
+	public static void update(Block[][] g)
+    {
+		//nextQueueArray = Teteris.getNextQueue();
+    	frame.remove(grid_panel);
+    	frame.remove(scoreNlevel_panel);
+    	
+    	
+    	
+    	//
+    	
+    	//
+    	grid_panel = new TestGamePanel(g);
+    	scoreNlevel_panel = new ScorePanel(score);
+    	
+    	
+    	
+    	frame.getContentPane().add(grid_panel, BorderLayout.CENTER);
+    	frame.getContentPane().add(scoreNlevel_panel,BorderLayout.WEST);
+    	
+    	
+    	
+    	//frame.setLocationRelativeTo(null);
+       frame.setVisible(true);
+    }
+	
 	
 	
 	
 	public  static void main(String[] args)
 	{
-		JFrame frame = new Board();
-		frame.pack();
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setLocationRelativeTo(null);
-	  
+		new Board();
 	}
 }

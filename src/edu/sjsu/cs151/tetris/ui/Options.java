@@ -5,6 +5,8 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author David
@@ -16,7 +18,10 @@ public class Options extends javax.swing.JFrame {
      */
     public Options() {
         initComponents();
-        if (Main.getHideTutorial()) {
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        if (MainUI.getHideTutorial()) {
             jCheckBox1.setSelected(true);
         }
     }
@@ -109,7 +114,7 @@ public class Options extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        Main.setHideTutorial();
+        MainUI.setHideTutorial();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
