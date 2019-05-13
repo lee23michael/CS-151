@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Queue;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -19,6 +20,8 @@ import edu.sjsu.cs151.tetris.controller.Controller;
 import edu.sjsu.cs151.tetris.controller.GameInfo;
 import edu.sjsu.cs151.tetris.message.*;
 import edu.sjsu.cs151.tetris.model.Block;
+import edu.sjsu.cs151.tetris.model.Piece;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
@@ -354,9 +357,10 @@ JLabel label = new JLabel("");
 	
 	public static void update(Block[][] g)
     {
-		//nextQueueArray = Teteris.getNextQueue();
+	Queue<Piece> nextQueueArray = Controller.getNextQueue();
     	frame.remove(grid_panel);
     	frame.remove(scoreNlevel_panel);
+    	frame.remove(hold_panel);
     	
     	
     	
@@ -365,12 +369,14 @@ JLabel label = new JLabel("");
     	//
     	grid_panel = new TestGamePanel(g);
     	scoreNlevel_panel = new ScorePanel(score);
+    	hold_panel = new NextQueuePanel(nextQueueArray);
+  
     	
     	
     	
     	frame.getContentPane().add(grid_panel, BorderLayout.CENTER);
     	frame.getContentPane().add(scoreNlevel_panel,BorderLayout.WEST);
-    	
+    	frame.getContentPane().add(hold_panel, BorderLayout.EAST);
     	
     	
     	//frame.setLocationRelativeTo(null);
