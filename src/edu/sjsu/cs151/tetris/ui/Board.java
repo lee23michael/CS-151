@@ -261,36 +261,33 @@ public class Board extends JFrame
        		 
      		@Override
      		 
-     		public void keyPressed(KeyEvent event) 
-     		{
+     		public void keyPressed(KeyEvent event) {
      		 
      			int keyCode = event.getKeyCode();
-     		    switch( keyCode ) 
-     		    { 
+     		    switch( keyCode ) { 
      		        case KeyEvent.VK_UP:	
-     		            Teteris.rotate();
+     		            Controller.queue.add(new UpKeyMessage());
      		            break;
      		        case KeyEvent.VK_DOWN:
-     		        	Teteris.drop(); 
+     		        	Controller.queue.add(new DownKeyMessage());
      		            break;
      		        case KeyEvent.VK_LEFT:
-     		        	Teteris.moveLeft();
+     		        	Controller.queue.add(new LeftKeyMessage());
      		            break;
      		        case KeyEvent.VK_RIGHT :
-     		        	Teteris.moveRight();
+     		        	Controller.queue.add(new RightKeyMessage());
      		            break;
      		       case KeyEvent.VK_SPACE :
     		        	{
-    		        		while(Teteris.drop())
-    		        		{
-    		        			
-    		        		}
+    		        		Controller.queue.add(new SpaceKeyMessage());
     		        	}
     		            break;
      		       case KeyEvent.VK_ESCAPE:
      		       {
-     		    	   Teteris.exit();
-     		    	   break;
+     		    	  frame.dispose();
+     		    	  Controller.queue.add(new EscapeKeyMessage());
+     		    	 Controller.queue.add(new GameOverMessage());
+     		    	  break;
      		       }
      		    	   
      		     }
@@ -298,15 +295,13 @@ public class Board extends JFrame
      		}
 
      		@Override
-     		public void keyTyped(KeyEvent e) 
-     		{
+     		public void keyTyped(KeyEvent e) {
      			// TODO Auto-generated method stub
      			
      		}
 
      		@Override
-     		public void keyReleased(KeyEvent e) 
-     		{
+     		public void keyReleased(KeyEvent e) {
      			// TODO Auto-generated method stub
      			
      		}
@@ -317,7 +312,7 @@ public class Board extends JFrame
 	
 		
 		
-		frame.setSize(950,1000);  
+		frame.setSize(934,936);  
 		frame.setVisible(true);  
 	}
 	
