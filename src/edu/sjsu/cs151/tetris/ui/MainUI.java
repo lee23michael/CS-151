@@ -20,6 +20,7 @@ import edu.sjsu.cs151.tetris.model.User;
 
 public class MainUI {
 	private static Board board;
+	private static boolean reset = false;
 	
 
     public static boolean getHideTutorial() {
@@ -41,8 +42,17 @@ public class MainUI {
     
     public static void startGame()
     {
+    	if(!reset)
+    	{
     	board = new Board();
+    	reset = true;
+    	}
+    	else
+    	{
+    		board.frame.setVisible(true);
+    	}
     }
+    
     
     public static void oHighscores(ArrayList<User> list)
     {
@@ -51,7 +61,7 @@ public class MainUI {
     
     public static void gameOver()
     {	 
-    	Board.frame.dispose();
+    	Board.frame.setVisible(false);;
     	new GameOver();
     }
     
