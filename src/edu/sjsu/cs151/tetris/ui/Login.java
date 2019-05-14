@@ -5,8 +5,8 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+//import java.awt.event.KeyEvent;
+//import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
@@ -59,11 +59,11 @@ public class Login {
 
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+//        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                jTextField1ActionPerformed(evt);
+//            }
+//        });
 
         jLabel1.setText("Username:");
 
@@ -152,45 +152,45 @@ public class Login {
         
         
         
-KeyListener listener = new KeyListener() {
-         	
-         	//board Need to be update from below
-       		 
-     		@Override
-     		public void keyPressed(KeyEvent event) {
-     		 
-     			int keyCode = event.getKeyCode();
-     		    switch( keyCode ) { 
-     		        case KeyEvent.VK_ENTER:
-     		        {
-     		        	System.out.print("enter key pressed");
-     		        }
-     		            break;
-     		    	   
-     		     }
-     		 
-     		}
-
-     		@Override
-     		public void keyTyped(KeyEvent e) {
-     			// TODO Auto-generated method stub
-     			
-     		}
-
-     		@Override
-     		public void keyReleased(KeyEvent e) {
-     			// TODO Auto-generated method stub
-     			
-     		}
-     		
-     		
-     		
-     		
-     };
-     
-     
-
-         frame.addKeyListener(listener);
+//KeyListener listener = new KeyListener() {
+//         	
+//         	//board Need to be update from below
+//       		 
+//     		@Override
+//     		public void keyPressed(KeyEvent event) {
+//     		 
+//     			int keyCode = event.getKeyCode();
+//     		    switch( keyCode ) { 
+//     		        case KeyEvent.VK_ENTER:
+//     		        {
+//     		        	System.out.print("enter key pressed");
+//     		        }
+//     		            break;
+//     		    	   
+//     		     }
+//     		 
+//     		}
+//
+//     		@Override
+//     		public void keyTyped(KeyEvent e) {
+//     			// TODO Auto-generated method stub
+//     			
+//     		}
+//
+//     		@Override
+//     		public void keyReleased(KeyEvent e) {
+//     			// TODO Auto-generated method stub
+//     			
+//     		}
+//     		
+//     		
+//     		
+//     		
+//     };
+//     
+//     
+//
+//         frame.addKeyListener(listener);
         
         
         
