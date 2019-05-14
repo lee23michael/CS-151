@@ -17,7 +17,9 @@ import edu.sjsu.cs151.tetris.message.*;
 import edu.sjsu.cs151.tetris.ui.Board;
 
 
-
+/** 
+ * The "app" class that will run the game.
+ */
 public class Game {
 	
 	private static BlockingQueue<Message> queue = new LinkedBlockingQueue<Message>();
