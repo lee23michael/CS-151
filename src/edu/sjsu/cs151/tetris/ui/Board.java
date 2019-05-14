@@ -308,7 +308,7 @@ JLabel label = new JLabel("");
     		            break;
      		       case KeyEvent.VK_ESCAPE:
      		       {
-     		    	  frame.dispose();
+     		    	  //frame.setVisible(false);
      		    	  Controller.queue.add(new EscapeKeyMessage());
      		    	 Controller.queue.add(new GameOverMessage());
      		    	  break;

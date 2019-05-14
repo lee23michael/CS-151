@@ -17,6 +17,7 @@ import edu.sjsu.cs151.tetris.model.User;
  */
 public class MainUI {
 	
+	private static boolean boardstatus = false;
     /**
      * Gets the boolean variable hideTutorial.
      * @return A true if the tutorial should be hidden, false otherwise.
@@ -43,8 +44,16 @@ public class MainUI {
      * Creates a new Board and saves it to the board field.
      */
     public static void startGame()
-    {
-    	board = new Board();
+    {	
+    	if(!boardstatus)
+    	{
+    		board = new Board();
+    		boardstatus = true;
+    	}
+    	else
+    	{
+    		Board.frame.setVisible(true);
+    	}
     }
     /**
      * Makes a new HighScores screen with the given list of users and sets visibility to true.
@@ -60,7 +69,7 @@ public class MainUI {
      */
     public static void gameOver()
     {	 
-    	Board.frame.dispose();
+    	Board.frame.setVisible(false);
     	new GameOver();
     }
     
