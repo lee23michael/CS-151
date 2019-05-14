@@ -32,7 +32,9 @@ import javax.swing.SpringLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * Represents a Game Over Screen.
+ */
 public class GameOver extends JFrame{
 	private JTextField txtGameOver;
 	public static JFrame frame = new JFrame("GameOver");

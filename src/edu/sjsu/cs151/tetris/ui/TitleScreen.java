@@ -13,8 +13,7 @@ import javax.swing.JFrame;
 
 
 /**
- *
- * @author David
+ *Represents a Title Screen in the game.
  */
 public class TitleScreen extends javax.swing.JFrame {
 
@@ -199,11 +198,11 @@ public class TitleScreen extends javax.swing.JFrame {
     }                                        
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {                                   
-        if (evt.getKeyCode() == 27) {
+        if (evt.getKeyCode() == 27) { //if escape is pressed
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         }
         
-        if (evt.getKeyCode() == 13) {
+        if (evt.getKeyCode() == 13) { //if we press enter
             this.dispose();
             new Login().frame.setVisible(true);
             

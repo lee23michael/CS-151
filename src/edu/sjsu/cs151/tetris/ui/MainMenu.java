@@ -14,8 +14,7 @@ import edu.sjsu.cs151.tetris.message.NewGameMessage;
 import edu.sjsu.cs151.tetris.message.ScoreMessage;
 
 /**
- *
- * @author David
+ * Represents a Main Menu Screen with the Play, High Scores, and Options buttons.
  */
 public class MainMenu extends javax.swing.JFrame {
 
@@ -23,7 +22,7 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     public MainMenu() {
-        initComponents();
+        initComponents(); //initialize components
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -126,13 +125,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         
-        Controller.queue.put(new NewGameMessage());
+        Controller.queue.put(new NewGameMessage()); //Start the Game
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        System.out.print("button score");
-        Controller.queue.put(new ScoreMessage());
+        System.out.print("button score ");
+        Controller.queue.put(new ScoreMessage()); //Display Highscores
       
     }//GEN-LAST:event_jButton2ActionPerformed
 

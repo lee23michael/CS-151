@@ -13,42 +13,51 @@ import edu.sjsu.cs151.tetris.model.User;
 
 
 /**
- *
- * @author David
+ * Represents the Main UI class of the game.
  */
-
-
 public class MainUI {
-	private static Board board;
 	
-
+    /**
+     * Gets the boolean variable hideTutorial.
+     * @return A true if the tutorial should be hidden, false otherwise.
+     */
     public static boolean getHideTutorial() {
         return hideTutorial;
     }
+    /**
+     * Toggles the boolean hideTutorial variable to be the opposite of what it is set to be.
+     */
     public static void setHideTutorial() {
         hideTutorial = !hideTutorial;
     }
-    /**
-     * @param args the command line arguments
-     */
  
-    
+    /**
+     * Creates a new MainUI that displays the TitleScreen.
+     */
     public MainUI()
     {
     	TitleScreen t = new TitleScreen();
         t.setVisible(true);
     }
-    
+    /**
+     * Creates a new Board and saves it to the board field.
+     */
     public static void startGame()
     {
     	board = new Board();
     }
-    
+    /**
+     * Makes a new HighScores screen with the given list of users and sets visibility to true.
+     * @param list List of users.
+     */
     public static void oHighscores(ArrayList<User> list)
     {
     	new Highscores(list).setVisible(true);
     }
     
+    /**
+     * Displays the GameOver screen.
+     */
     public static void gameOver()
     {	 
     	Board.frame.dispose();
@@ -56,5 +65,6 @@ public class MainUI {
     }
     
     private static boolean hideTutorial;
-    
+    private static Board board;
+	
 }

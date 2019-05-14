@@ -19,17 +19,16 @@ import javax.swing.GroupLayout;
 import javax.swing.JTable;
 
 /**
- *
- * @author David
+ * Represents a list of usernames with their respective high scores from playing the game.
  */
 public class Highscores extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Highscores
-     */
-	
-	private static ArrayList<User> u;
-	
+    
+	private static ArrayList<User> u; //ArrayList of users.
+	/**
+	 * Makes a new HighScores screen.
+	 * @param list The list of users to display on the high score screen.
+	 */
     public Highscores(ArrayList<User> list) {
     	u = list;
         initComponents();
@@ -39,7 +38,9 @@ public class Highscores extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    
+    /**
+     * Makes a new HighScores screen.
+     */
     public Highscores() {
         initComponents();
         setResizable(false);
@@ -81,7 +82,7 @@ public class Highscores extends javax.swing.JFrame {
         
         u.sort(null);
         String[][] array = new String[u.size()][2];
-        int count = 0;
+        int count = 0;  //gets name and score of each user u.
         for(User c: u){
         	System.out.println();
             array[count][0] = c.getName();
@@ -161,7 +162,7 @@ public class Highscores extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new MainMenu().setVisible(true);
+        new MainMenu().setVisible(true); //goes to the main menu.
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

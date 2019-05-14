@@ -24,8 +24,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 
 /**
- *
- * @author David
+ * Represents a Login page for the game that takes input for a username.
  */
 public class Login {
 
@@ -35,8 +34,8 @@ public class Login {
 	public static JFrame frame = new JFrame("Login");
     public Login() {
     	frame.setResizable(false);
-        initComponents();
-        jLabel4.setVisible(false);
+        initComponents();       //initializes components of this frame
+        jLabel4.setVisible(false); //set visibility for the validation label
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -142,9 +141,9 @@ public class Login {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int userLength = jTextField1.getText().length();
-        if (userLength > 13 || userLength <= 0) {
-            jLabel4.setVisible(true);
-        } else {
+        if (userLength > 13 || userLength <= 0) { //Checking if the username is under 13 characters.
+            jLabel4.setVisible(true); //remind user to enter a valid username.
+        } else {  //valid username
         	frame.dispose();
         Controller.setName(jTextField1.getText());
         new MainMenu().setVisible(true);
@@ -158,14 +157,13 @@ KeyListener listener = new KeyListener() {
          	//board Need to be update from below
        		 
      		@Override
-     		 
      		public void keyPressed(KeyEvent event) {
      		 
      			int keyCode = event.getKeyCode();
      		    switch( keyCode ) { 
      		        case KeyEvent.VK_ENTER:
      		        {
-     		        	System.out.print("key enterned pressed");
+     		        	System.out.print("enter key pressed");
      		        }
      		            break;
      		    	   

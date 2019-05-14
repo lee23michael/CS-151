@@ -20,19 +20,23 @@ public class TextResizeAnimator extends JPanel implements ActionListener {
 	public static final int FONT_OFFSET = 1;
 	public static final int COLOR_OFFSET = 10;
 	public static final int MAXFONT = 50;
-
+    /**
+     * Makes a new TextResizeAnimator.
+     */
 	public TextResizeAnimator() {
 		
 		timer = new Timer(100, this);
 		timer.start();
 	}
-
+   /**
+    * Helps display this TextResizeAnimator in 2D Graphics.
+    */
 	public void paint(Graphics g) {
 		
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-		Font font = new Font("Impact", Font.PLAIN, x);
+		Font font = new Font("Impact", Font.PLAIN, x); //set the font/color
 		g2d.setFont(font);
 		g2d.setColor(textColor);
 
@@ -68,9 +72,9 @@ public class TextResizeAnimator extends JPanel implements ActionListener {
 			hasReachedMax = false;
 		}
 		if (hasReachedMax) {
-			x -= FONT_OFFSET;
+			x -= FONT_OFFSET; //decrease font
 		} else if (hasReachedMin) {
-			x += FONT_OFFSET;
+			x += FONT_OFFSET; //increase font
 		}
 
 		repaint();

@@ -152,6 +152,7 @@ JLabel label = new JLabel("");
 								.addComponent(lblTetrisLine))
 							.addGap(57))))
 		);
+		
 		gl_tutorial_panel.setVerticalGroup(
 			gl_tutorial_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_tutorial_panel.createSequentialGroup()
@@ -181,6 +182,7 @@ JLabel label = new JLabel("");
 					.addComponent(label)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+		
         tutorial_panel.setLayout(gl_tutorial_panel);
 
             
@@ -357,7 +359,10 @@ JLabel label = new JLabel("");
 	
 	public static void update(Block[][] g)
     {
-	Queue<Piece> nextQueueArray = Controller.getNextQueue();
+		Piece[] p = new Piece[4];
+	    Piece[] nextQueueArray = Controller.getNextQueue().toArray(p);
+	    
+	    		
     	frame.remove(grid_panel);
     	frame.remove(scoreNlevel_panel);
     	frame.remove(hold_panel);
