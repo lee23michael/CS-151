@@ -5,7 +5,6 @@ package edu.sjsu.cs151.tetris.model;
  * Represents a Termino piece on the Grid.
  */
 
-
 public class Piece {
 
 	private int pivot = -1;

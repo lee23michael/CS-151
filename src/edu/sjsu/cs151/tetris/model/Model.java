@@ -14,6 +14,9 @@ import java.util.Queue;
 import edu.sjsu.cs151.tetris.controller.Controller;
 import edu.sjsu.cs151.tetris.message.GameOverMessage;
 
+/**
+ *
+ */
 public class Model implements Serializable  {
 	
 	/**
