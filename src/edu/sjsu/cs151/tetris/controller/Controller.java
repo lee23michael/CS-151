@@ -24,7 +24,9 @@ import edu.sjsu.cs151.tetris.ui.MainUI;
 import edu.sjsu.cs151.tetris.ui.TitleScreen;
   
 //Controller Class
-
+/**
+ * The Controller class for our game.
+ */
 public class Controller 
 { 
 	/*

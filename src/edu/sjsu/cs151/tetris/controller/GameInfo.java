@@ -1,5 +1,7 @@
 package edu.sjsu.cs151.tetris.controller;
-
+/**
+ * A class that keeps track of information about the game.
+ */
 public class GameInfo {
 	private static boolean UserNameEntered = false;
 	private static int gamePage = 1;
