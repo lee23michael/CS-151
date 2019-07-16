@@ -6,9 +6,12 @@
 package edu.sjsu.cs151.tetris.ui;
 import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
 
-import edu.sjsu.cs151.tetris.Teteris;
+import edu.sjsu.cs151.tetris.controller.Controller;
+import edu.sjsu.cs151.tetris.model.User;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -16,17 +19,34 @@ import javax.swing.GroupLayout;
 import javax.swing.JTable;
 
 /**
- *
- * @author David
+ * Represents a list of usernames with their respective high scores from playing the game.
  */
 public class Highscores extends javax.swing.JFrame {
 
+    
+	private static ArrayList<User> u; //ArrayList of users.
+	/**
+	 * Makes a new HighScores screen.
+	 * @param list The list of users to display on the high score screen.
+	 */
+    public Highscores(ArrayList<User> list) {
+    	u = list;
+        initComponents();
+        setResizable(false);
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+    
     /**
-     * Creates new form Highscores
+     * Makes a new HighScores screen.
      */
     public Highscores() {
         initComponents();
         setResizable(false);
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -59,17 +79,20 @@ public class Highscores extends javax.swing.JFrame {
        
         
         
-        Map<String,Integer> map = Teteris.getScoreBoardMap();
         
-        String[][] array = new String[map.size()][2];
-        int count = 0;
-        for(Map.Entry<String,Integer> entry : map.entrySet()){
-            array[count][0] = entry.getKey();
-            array[count][1] = entry.getValue().toString();
+        u.sort(null);
+        String[][] array = new String[u.size()][2];
+        int count = 0;  //gets name and score of each user u.
+        for(User c: u){
+        	System.out.println();
+            array[count][0] = c.getName();
+            array[count][1] = Integer.toString(c.getScore());
             count++;
-        }
+        	}
         
-        table = new JTable(array,columnNames);
+       
+        
+       table = new JTable(array,columnNames);
        
        
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -139,7 +162,7 @@ public class Highscores extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new MainMenu().setVisible(true);
+        new MainMenu().setVisible(true); //goes to the main menu.
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

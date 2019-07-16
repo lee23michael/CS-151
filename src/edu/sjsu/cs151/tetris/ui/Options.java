@@ -5,9 +5,10 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
+import javax.swing.JFrame;
+
 /**
- *
- * @author David
+ *Represents an Options page for the Game with a volume slider and a check box to hide the Tutorial HUD.
  */
 public class Options extends javax.swing.JFrame {
 
@@ -16,8 +17,11 @@ public class Options extends javax.swing.JFrame {
      */
     public Options() {
         initComponents();
-        if (Main.getHideTutorial()) {
-            jCheckBox1.setSelected(true);
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        if (MainUI.getHideTutorial()) {
+            jCheckBox1.setSelected(true); //checks if the check box has already been selected before.
         }
     }
 
@@ -109,12 +113,12 @@ public class Options extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        Main.setHideTutorial();
+        MainUI.setHideTutorial(); //keeps track of the check box variable
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        new MainMenu().setVisible(true);
+        this.setVisible(false); 
+        new MainMenu().setVisible(true); //go back to Main Menu
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

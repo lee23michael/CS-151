@@ -9,11 +9,11 @@ package edu.sjsu.cs151.tetris.ui;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 
 /**
- *
- * @author David
+ *Represents a Title Screen in the game.
  */
 public class TitleScreen extends javax.swing.JFrame {
 
@@ -23,6 +23,9 @@ public class TitleScreen extends javax.swing.JFrame {
     public TitleScreen() {
         initComponents();
         setResizable(false);
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -95,9 +98,9 @@ public class TitleScreen extends javax.swing.JFrame {
 
         
         
-        ImageIcon icon1 = new ImageIcon("./CS-151/src/edu/sjsu/cs151/tetris/ui/images/Tetromino_S.png");
+        ImageIcon icon1 = new ImageIcon("./images/Tetromino_S.png");
         jLabel2.setIcon(icon1);
-        ImageIcon icon2 = new ImageIcon("./CS-151/src/edu/sjsu/cs151/tetris/ui/images/Tetromino_L.png");
+        ImageIcon icon2 = new ImageIcon("./images/Tetromino_Reverse_L.png");
         jLabel3.setIcon(icon2);
         ImageIcon icon3 = new ImageIcon("./images/Tetromino_o.png");
         jLabel4.setIcon(icon3);
@@ -191,17 +194,17 @@ public class TitleScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
             this.dispose();
-           new Login().setVisible(true);
+           new Login().frame.setVisible(true);
     }                                        
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {                                   
-        if (evt.getKeyCode() == 27) {
+        if (evt.getKeyCode() == 27) { //if escape is pressed
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         }
         
-        if (evt.getKeyCode() == 13) {
+        if (evt.getKeyCode() == 13) { //if we press enter
             this.dispose();
-            new Login().setVisible(true);
+            new Login().frame.setVisible(true);
             
         }
     }                                  

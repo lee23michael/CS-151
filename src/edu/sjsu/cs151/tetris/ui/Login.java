@@ -5,21 +5,40 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
-import edu.sjsu.cs151.tetris.Teteris;
+//import java.awt.event.KeyEvent;
+//import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+import edu.sjsu.cs151.tetris.controller.Controller;
+import edu.sjsu.cs151.tetris.message.DownKeyMessage;
+import edu.sjsu.cs151.tetris.message.EscapeKeyMessage;
+import edu.sjsu.cs151.tetris.message.GameOverMessage;
+import edu.sjsu.cs151.tetris.message.LeftKeyMessage;
+import edu.sjsu.cs151.tetris.message.RightKeyMessage;
+import edu.sjsu.cs151.tetris.message.SpaceKeyMessage;
+import edu.sjsu.cs151.tetris.message.UpKeyMessage;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 
 /**
- *
- * @author David
+ * Represents a Login page for the game that takes input for a username.
  */
-public class Login extends javax.swing.JFrame {
+public class Login {
 
     /**
      * Creates new form Login
      */
+	public static JFrame frame = new JFrame("Login");
     public Login() {
-    	setResizable(false);
-        initComponents();
-        jLabel4.setVisible(false);
+    	frame.setResizable(false);
+        initComponents();       //initializes components of this frame
+        jLabel4.setVisible(false); //set visibility for the validation label
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,13 +57,13 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+//        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                jTextField1ActionPerformed(evt);
+//            }
+//        });
 
         jLabel1.setText("Username:");
 
@@ -52,7 +71,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Login");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel3.setText("*Usernames must be under 13 characters ");
+        jLabel3.setText("*Usernames must be under 13 characters \n\n\n");
 
         jButton1.setText("Enter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,65 +81,120 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel4.setText("*Please enter a valid username");
+        
+        JLabel lblNewLabel = new JLabel("Hit Enter With Mouse\nDo not use Keyboard\n");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame.getContentPane());
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(73, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(153)
+        					.addComponent(jLabel2))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(114)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel3)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(jLabel1)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(jLabel4)
+        								.addGroup(layout.createSequentialGroup()
+        									.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)))))))
+        			.addContainerGap(73, Short.MAX_VALUE))
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(97, Short.MAX_VALUE)
+        			.addComponent(lblNewLabel)
+        			.addGap(82))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(127, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(40)
+        			.addComponent(jLabel2)
+        			.addGap(37)
+        			.addComponent(jLabel4)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel1)
+        				.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addComponent(lblNewLabel)
+        			.addContainerGap(76, Short.MAX_VALUE))
         );
+        frame.getContentPane().setLayout(layout);
 
-        pack();
+        frame.pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        this.dispose();
+    	frame.dispose();
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int userLength = jTextField1.getText().length();
-        if (userLength > 13 || userLength <= 0) {
-            jLabel4.setVisible(true);
-        } else {
-        this.dispose();
-        Teteris.setName(jTextField1.getText());
+        if (userLength > 13 || userLength <= 0) { //Checking if the username is under 13 characters.
+            jLabel4.setVisible(true); //remind user to enter a valid username.
+        } else {  //valid username
+        	frame.dispose();
+        Controller.setName(jTextField1.getText());
         new MainMenu().setVisible(true);
         }
+        
+        
+        
+        
+//KeyListener listener = new KeyListener() {
+//         	
+//         	//board Need to be update from below
+//       		 
+//     		@Override
+//     		public void keyPressed(KeyEvent event) {
+//     		 
+//     			int keyCode = event.getKeyCode();
+//     		    switch( keyCode ) { 
+//     		        case KeyEvent.VK_ENTER:
+//     		        {
+//     		        	System.out.print("enter key pressed");
+//     		        }
+//     		            break;
+//     		    	   
+//     		     }
+//     		 
+//     		}
+//
+//     		@Override
+//     		public void keyTyped(KeyEvent e) {
+//     			// TODO Auto-generated method stub
+//     			
+//     		}
+//
+//     		@Override
+//     		public void keyReleased(KeyEvent e) {
+//     			// TODO Auto-generated method stub
+//     			
+//     		}
+//     		
+//     		
+//     		
+//     		
+//     };
+//     
+//     
+//
+//         frame.addKeyListener(listener);
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -153,7 +227,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Login().frame.setVisible(true);
             }
         });
     }
@@ -165,5 +239,4 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
-    // End of variables declaration//GEN-END:variables
 }

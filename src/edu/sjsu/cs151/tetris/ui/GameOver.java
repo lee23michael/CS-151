@@ -18,6 +18,8 @@ import javax.swing.JTextPane;
 //import com.jgoodies.forms.layout.ColumnSpec;
 //import com.jgoodies.forms.layout.RowSpec;
 
+import edu.sjsu.cs151.tetris.controller.Controller;
+import edu.sjsu.cs151.tetris.message.ScoreMessage;
 import edu.sjsu.cs151.tetris.model.User;
 
 import javax.swing.GroupLayout;
@@ -30,11 +32,13 @@ import javax.swing.SpringLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * Represents a Game Over Screen.
+ */
 public class GameOver extends JFrame{
 	private JTextField txtGameOver;
-	JFrame frame = new JFrame("Testing");
-	JLabel imgLabel = new JLabel(new ImageIcon("C:\\Users\\lee23\\git\\CS-151\\src\\edu\\sjsu\\cs151\\tetris\\ui\\images\\GAMEOVER.jpg"));
+	public static JFrame frame = new JFrame("GameOver");
+	JLabel imgLabel = new JLabel(new ImageIcon("./images/GAMEOVER.jpg"));
 	public GameOver() {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -49,7 +53,12 @@ public class GameOver extends JFrame{
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
 	        		frame.dispose();
-	                new Highscores().setVisible(true);
+	        		 try {
+						Controller.queue.put(new ScoreMessage());
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	        	}
 	        });
 	        sl_panel.putConstraint(SpringLayout.SOUTH, btnShowScore, -71, SpringLayout.SOUTH, panel);

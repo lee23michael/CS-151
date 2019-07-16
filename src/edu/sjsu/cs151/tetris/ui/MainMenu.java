@@ -5,11 +5,16 @@
  */
 package edu.sjsu.cs151.tetris.ui;
 
-import edu.sjsu.cs151.tetris.Teteris;
+import javax.swing.JFrame;
+
+import edu.sjsu.cs151.tetris.controller.Controller;
+import edu.sjsu.cs151.tetris.controller.GameInfo;
+import edu.sjsu.cs151.tetris.message.GameOverMessage;
+import edu.sjsu.cs151.tetris.message.NewGameMessage;
+import edu.sjsu.cs151.tetris.message.ScoreMessage;
 
 /**
- *
- * @author David
+ * Represents a Main Menu Screen with the Play, High Scores, and Options buttons.
  */
 public class MainMenu extends javax.swing.JFrame {
 
@@ -17,7 +22,10 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     public MainMenu() {
-        initComponents();
+        initComponents(); //initialize components
+        pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -32,21 +40,31 @@ public class MainMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        //jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Play");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                try {
+					jButton1ActionPerformed(evt);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
         jButton2.setText("High Scores");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                try {
+					jButton2ActionPerformed(evt);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -57,12 +75,12 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Title Screen");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        //jButton4.setText("Title Screen");
+       // jButton4.addActionListener(new java.awt.event.ActionListener() {
+         //   public void actionPerformed(java.awt.event.ActionEvent evt) {
+          //      jButton4ActionPerformed(evt);
+          //  }
+      //  });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,7 +89,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(155, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    //.addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -87,9 +105,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
+                //.addComponent(jButton4)
+                .addContainerGap(75, Short.MAX_VALUE)
+                ));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,19 +117,22 @@ public class MainMenu extends javax.swing.JFrame {
         new Options().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();
-        new TitleScreen().setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+//    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+//        this.dispose();
+//        new TitleScreen().setVisible(true);
+//    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        Teteris.gameStart = 1;
+        
+        Controller.queue.put(new NewGameMessage()); //Start the Game
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        new Highscores().setVisible(true);
+        System.out.print("button score ");
+        Controller.queue.put(new ScoreMessage()); //Display Highscores
+      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

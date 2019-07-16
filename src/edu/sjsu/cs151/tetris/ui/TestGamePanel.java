@@ -16,8 +16,9 @@ public class TestGamePanel extends JPanel {
 
     public TestGamePanel() {
     	setForeground(Color.WHITE);
-    	setBackground(Color.WHITE);
-    	setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+    	
+    	setPreferredSize(new Dimension(300, 300));
+    	setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
     	
         setLayout(new GridBagLayout());
 
@@ -134,7 +135,7 @@ public class TestGamePanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(20, 20);
+        return new Dimension(30, 30);
     	}
 	}
 	}

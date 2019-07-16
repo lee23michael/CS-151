@@ -11,6 +11,12 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+import edu.sjsu.cs151.tetris.controller.Controller;
+import edu.sjsu.cs151.tetris.message.GameOverMessage;
+
+/**
+ *
+ */
 public class Model implements Serializable  {
 	
 	/**
@@ -30,37 +36,29 @@ public class Model implements Serializable  {
 	public Model(String name)
 	{
 		gameLost = false;
-		assert true : "In Model Constructor";
-		User.loadUserList();//load previous users data
-		assert true : "UserList Loaded";
-		//LoadState();
-		assert true : "State Loaded";
-		
-//		if(Model.gameSaved == true)
-//		{
-//			assert true : "Gamed Saved Before";
-//			currentUser = User.getCurrentUser();
-//			Grid.loadGrid();
-//			LoadNextQueue();
-//			
-//			
-//		}else
-//		{
-			assert true : "New Game not saved before";
-			currentUser = new User(name);
-			new Grid();
-			fillNextQueue();
-		//}
-		
-		new ScoreBoard();
+		currentUser = new User(name);
+		currentUser.loadUserList();
+		currentUser.UpdateList();
+		new Grid();
+		fillNextQueue();
+		//new ScoreBoard();
 	}
 	
 	public static Block[][] getGrid() {
 		return Grid.getGrids();
 	}
 	
+	public static void resetGame()
+	{
+		gameLost = false;
+		new Grid();
+		nextPieceQueue = new LinkedList<>();
+		fillNextQueue();
+		//new ScoreBoard();
+	}
 	
-	public void checkLostCondition()
+	
+	public void checkLostCondition() throws InterruptedException
 	{
 		Block temp[] = 
 		currentPiece.getBlockArray();
@@ -70,12 +68,14 @@ public class Model implements Serializable  {
 			if(temp[i].getXCoor()<2)
 			{
 				gameLost = true;
+				Controller.queue.put(new GameOverMessage());
 			}
 		}
 	}
 	
 	public static void exit() {
 		gameLost = true;
+		
 	}
 	
 	public boolean getLostCondition()
@@ -88,7 +88,7 @@ public class Model implements Serializable  {
 		return currentPiece;
 	}
 	
-	public void fillNextQueue()
+	public static void fillNextQueue()
 	{
 		currentPiece = RandomSingleton.getInstance().nextPiece();
 		currentPiece.setVisible();
@@ -112,7 +112,7 @@ public class Model implements Serializable  {
 		return currentUser;
 	}
 	
-	public void setFinalized()
+	public void setFinalized() throws InterruptedException
 	{
 		this.checkLostCondition();
 		checkLines();
@@ -539,15 +539,15 @@ public class Model implements Serializable  {
 		gameLost = x;
 	}
 	
-	public void showSocoreBoard()
-	{
-		System.out.println(ScoreBoard.getScoreBoardMap().toString());
-	}
-	
-	public static Map<String,Integer> getScoreBoardMap()
-	{
-		return ScoreBoard.getScoreBoardMap();
-		
-	}
+//	public void showSocoreBoard()
+//	{
+//		System.out.println(ScoreBoard.getScoreBoardMap().toString());
+//	}
+//	
+//	public static Map<String,Integer> getScoreBoardMap()
+//	{
+//		return ScoreBoard.getScoreBoardMap();
+//		
+//	}
 
 }
